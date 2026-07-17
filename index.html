@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>path-map 升學地圖｜116 學測・分科時程與入學管道</title>
+<meta name="description" content="116 學年度學測、分科測驗重要日程與倒數、繁星推薦／個人申請／分發入學管道指南、學習歷程檔案提醒——高中數學老師 Kitty 整理，資料以大考中心公告為準。">
+<meta property="og:title" content="path-map 升學地圖｜116 學測・分科時程與入學管道">
+<meta property="og:description" content="學測倒數、升學路線圖、入學管道指南、學習歷程提醒，一頁看懂。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta name="theme-color" content="#8c2740">
+<style>
+/* ============================================================
+   mathmap 網頁風格標準 v1（2026-07-07）— 全站共用
+   ============================================================ */
+:root{
+  --maroon:   #8c2740;
+  --maroon-d: #6f1f33;
+  --page:     #f7f2ee;
+  --card:     #ffffff;
+  --line:     #e7dcd6;
+  --ink:      #2b2b2b;
+  --mut:      #9a857c;
+
+  --rose:     #c96f88;
+  --rose-bg:  #f6e7ec;
+  --rose-tag: #f0dde3;
+  --teal:     #1f6f78;
+  --teal-l:   #2c8a8a;
+
+  --ok:       #2e9e5b;
+  --warn:     #c0392b;
+  --gold:     #9a6410;
+
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 14px;
+  --radius-pill: 999px;
+  --shadow-bar:  0 2px 10px rgba(0,0,0,.15);
+  --shadow-card: 0 2px 10px rgba(80,40,30,.07);
+  --shadow-lift: 0 8px 22px rgba(140,39,64,.18);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--page); color:var(--ink); line-height:1.85;
+  font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC","Segoe UI",system-ui,sans-serif;
+}
+.wrap{max-width:880px; margin:0 auto; padding:0 18px 70px}
+a{color:var(--maroon)}
+
+h1{color:var(--maroon);   font-size:28px; letter-spacing:1px; margin:.2em 0}
+h2{color:var(--maroon-d); font-size:21px; margin:44px 0 14px;
+   border-left:6px solid var(--maroon); padding-left:12px}
+h3{color:var(--maroon);   font-size:17px; margin:26px 0 8px}
+
+.topbar{
+  position:sticky; top:0; z-index:50; background:rgba(140,39,64,.97); color:#fff;
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  padding:10px 18px; box-shadow:var(--shadow-bar);
+}
+.topbar .tb-title{font-weight:800; font-size:17px; letter-spacing:.5px; margin-right:auto}
+.topbar a.ghost{
+  background:rgba(255,255,255,.15); color:#fff; border:1px solid rgba(255,255,255,.5);
+  border-radius:var(--radius-pill); padding:4px 12px; font-size:13px; font-weight:700;
+  text-decoration:none; white-space:nowrap;
+}
+
+.card{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius-m);
+  padding:16px 20px; box-shadow:var(--shadow-card);
+}
+.card.accent{border-left:5px solid var(--maroon)}
+.card.accent-teal{border-left:5px solid var(--teal)}
+
+.btn{
+  background:var(--maroon); color:#fff; border:none; border-radius:var(--radius-pill);
+  padding:8px 18px; font-size:15px; font-weight:700; font-family:inherit; cursor:pointer;
+}
+.btn:hover{background:var(--maroon-d)}
+
+.tag{
+  display:inline-block; background:var(--rose-tag); color:var(--maroon-d);
+  border-radius:var(--radius-pill); padding:2px 12px; font-size:13px; font-weight:700;
+}
+.tag.teal{background:#e0eef0; color:#155a62}
+
+.note{
+  background:#fff7ef; border:1px dashed #e0b9a6; border-radius:var(--radius-m);
+  padding:10px 16px; font-size:14px; color:#6b5249;
+}
+
+@media(max-width:560px){
+  h1{font-size:23px}
+  .topbar{padding:8px 12px; gap:8px}
+  .topbar .tb-title{font-size:14px}
+  .topbar a.ghost{padding:2px 8px; font-size:11.5px}
+}
+
+/* ============================================================
+   path-map 頁面專屬樣式（疊在標準之上）
+   ============================================================ */
+body{font-size:15.5px}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--maroon); outline-offset:2px; border-radius:4px}
+.lede{margin:6px 0 0; font-size:14.5px; color:var(--mut)}
+
+/* ── 下一站看板 ── */
+.board{
+  margin:22px 0 8px; border-radius:var(--radius-l); padding:22px 22px 18px;
+  background:linear-gradient(160deg,var(--maroon),var(--maroon-d)); color:#fff;
+  box-shadow:var(--shadow-lift);
+}
+.board .eyebrow{font-size:11px; letter-spacing:.32em; color:var(--rose-tag); font-weight:700;}
+.board .row{display:flex; justify-content:space-between; align-items:flex-end; gap:14px; margin-top:8px; flex-wrap:wrap;}
+.board .stop{font-size:34px; font-weight:900; line-height:1.15;}
+.board .stop small{display:block; font-size:13.5px; font-weight:500; color:rgba(255,255,255,.78); margin-top:4px; letter-spacing:.04em;}
+.board .count{text-align:right;}
+.board .count b{font-size:46px; font-weight:900; line-height:1; font-variant-numeric:tabular-nums; letter-spacing:.01em;}
+.board .count span{font-size:13px; color:rgba(255,255,255,.72); display:block; margin-top:2px; letter-spacing:.2em;}
+.board .sub{margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,.22); font-size:13.5px; color:rgba(255,255,255,.88);}
+
+/* ── 路線圖 ── */
+section{margin:0 0 8px}
+.h2note{font-size:12.5px; color:var(--mut); margin:0 0 16px;}
+.legend{font-size:12px; color:var(--mut); margin:0 0 14px; display:flex; gap:16px; flex-wrap:wrap;}
+.legend i{display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:5px; vertical-align:-1px;}
+.legend .solid i{background:var(--maroon);}
+.legend .dash i{background:var(--page); border:2px dashed #cfbfb6; width:10px; height:10px;}
+
+ol.route{list-style:none; margin:0; padding:0 0 0 6px; position:relative;}
+ol.route::before{
+  content:""; position:absolute; left:13px; top:10px; bottom:10px;
+  width:4px; border-radius:2px; background:var(--maroon); opacity:.9;
+}
+.station{position:relative; padding:0 0 22px 40px;}
+.station:last-child{padding-bottom:4px;}
+.station::before{
+  content:""; position:absolute; left:7px; top:6px; width:12px; height:12px;
+  border-radius:50%; background:var(--maroon); border:3px solid var(--page);
+  box-shadow:0 0 0 2px var(--maroon);
+}
+.station.dash::before{background:var(--page); box-shadow:none; border:2.5px dashed #cfbfb6; width:11px; height:11px;}
+.station .date{font-size:13px; font-weight:800; color:var(--maroon); font-variant-numeric:tabular-nums; letter-spacing:.03em;}
+.station.dash .date{color:var(--mut);}
+.station .name{font-size:17px; font-weight:900; line-height:1.35;}
+.station .note{font-size:13.5px; color:var(--mut); margin-top:2px;}
+.station.big::before{width:18px; height:18px; left:4px; top:4px;}
+.station.big .name{font-size:21px; color:var(--maroon-d);}
+.station.past{opacity:.5;}
+.station.past .name::after{content:"　✓"; font-size:13px; color:var(--mut);}
+
+.youmark{position:relative; padding:2px 0 22px 40px; list-style:none;}
+.youmark::before{
+  content:""; position:absolute; left:5px; top:6px; width:16px; height:16px;
+  border-radius:50%; background:var(--teal);
+  box-shadow:0 0 0 4px rgba(31,111,120,.22);
+  animation:pulse 1.8s ease-out infinite;
+}
+.youmark b{color:var(--teal); font-size:14px; font-weight:900; letter-spacing:.06em;}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 3px rgba(31,111,120,.35);}
+  70%{box-shadow:0 0 0 11px rgba(31,111,120,0);}
+  100%{box-shadow:0 0 0 3px rgba(31,111,120,0);}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important;}
+}
+
+/* ── 管道指南 ── */
+.lane{background:var(--card); border:1px solid var(--line); border-radius:var(--radius-m); margin-bottom:12px; overflow:hidden; box-shadow:var(--shadow-card);}
+.lane summary{
+  cursor:pointer; padding:14px 16px; font-weight:900; font-size:15.5px;
+  display:flex; align-items:center; gap:10px; list-style:none;
+}
+.lane summary::-webkit-details-marker{display:none;}
+.lane summary::after{content:"＋"; margin-left:auto; color:var(--mut); font-weight:600;}
+.lane[open] summary::after{content:"－";}
+.lane summary .tag{font-size:11.5px; padding:2px 10px; white-space:nowrap;}
+.lane .body{padding:2px 16px 14px; font-size:14px; border-top:1px dashed var(--line);}
+.lane .body p{margin:10px 0;}
+.lane .body b.k{color:var(--maroon-d); font-weight:800; margin-right:4px;}
+
+/* ── 學習歷程 ── */
+.grade{
+  background:var(--card); border:1px solid var(--line); border-left:5px solid var(--maroon);
+  border-radius:var(--radius-m); padding:14px 16px; margin-bottom:12px; font-size:14px;
+  box-shadow:var(--shadow-card);
+}
+.grade.t{border-left-color:var(--teal);}
+.grade h3{margin:0 0 6px; font-size:15.5px; font-weight:900; color:var(--ink);}
+.grade h3 span{color:var(--maroon);}
+.grade.t h3 span{color:var(--teal);}
+.grade ul{margin:0; padding-left:20px;}
+.grade li{margin:5px 0;}
+
+/* ── 官方連結 ── */
+ul.links{list-style:none; margin:0; padding:0;}
+ul.links li{border-bottom:1px solid var(--line); padding:11px 2px; font-size:14.5px; display:flex; justify-content:space-between; gap:12px; align-items:baseline;}
+ul.links li:last-child{border:none;}
+ul.links a{font-weight:800; text-decoration:none;}
+ul.links a:hover{text-decoration:underline;}
+ul.links span{color:var(--mut); font-size:12.5px; text-align:right;}
+
+/* ── mathmap 導流（離開本頁動作＝第二主色） ── */
+.mmband{
+  margin:40px 0 0; border-radius:var(--radius-l); padding:18px 20px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-l)); color:#fff;
+  display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap;
+}
+.mmband .t b{font-size:16.5px; font-weight:900;}
+.mmband .t small{display:block; font-size:12.5px; color:rgba(255,255,255,.88); margin-top:3px;}
+.mmband a{
+  background:#fff; color:var(--teal); text-decoration:none; font-weight:900; font-size:14px;
+  padding:9px 16px; border-radius:var(--radius-pill); white-space:nowrap;
+}
+
+footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); color:var(--mut); font-size:12.5px; line-height:1.8;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-title">🗺️ path-map 升學地圖</div>
+  <a class="ghost" href="https://mathmap-kitty.github.io/web/">⇄ mathmap 教材網</a>
+</div>
+
+<div class="wrap">
+
+  <h1>把升學這條路，畫成一張看得懂的地圖。</h1>
+  <p class="lede">日期、管道、該做的事，一頁掌握。</p>
+
+  <div class="board" id="board" role="region" aria-label="下一站倒數">
+    <div class="eyebrow">下一站　NEXT STOP</div>
+    <div class="row">
+      <div class="stop" id="stopName">學測<small id="stopDate"></small></div>
+      <div class="count"><b id="stopDays">—</b><span>天</span></div>
+    </div>
+    <div class="sub" id="boardSub"></div>
+  </div>
+
+  <section>
+    <h2>🗺️ 116 學年度升學路線圖</h2>
+    <p class="h2note">適用：2026 年 9 月升高三的你（116 學年度考生）。青綠點＝你現在的位置。</p>
+    <div class="legend">
+      <span class="solid"><i></i>官方暫定日期（大考中心 115.5 公告）</span>
+      <span class="dash"><i></i>歷年慣例時段，確切日期以 116 簡章為準</span>
+    </div>
+    <ol class="route" id="route">
+      <li class="station" data-date="2026-08-04"><div class="date">2026/8/4</div><div class="name">116 考試簡章公告</div><div class="note">各項報名與考試日期在此最終確認——本頁日期屆時核對一次。</div></li>
+      <li class="station" data-date="2026-09-03"><div class="date">2026/9/3–9/10</div><div class="name">英聽第一次考試・報名</div><div class="note">要拚繁星或個申有英聽門檻的校系，第一次就去考。</div></li>
+      <li class="station" data-date="2026-10-17"><div class="date">2026/10/17（六）</div><div class="name">英聽 第一次考試</div></li>
+      <li class="station" data-date="2026-10-27"><div class="date">2026/10/27–11/10</div><div class="name">學測報名</div><div class="note">通常由學校集體報名，跟緊教務處公告；選考科目此時定案。</div></li>
+      <li class="station" data-date="2026-12-12"><div class="date">2026/12/12（六）</div><div class="name">英聽 第二次考試</div><div class="note">報名 11/4–11/10。第一次沒到標，這是最後補考機會。</div></li>
+      <li class="station big" data-date="2027-01-22" data-end="2027-01-24"><div class="date">2027/1/22（五）–1/24（日）</div><div class="name">學科能力測驗</div><div class="note">繁星、個人申請的成績依據，也是分發入學的一部分。</div></li>
+      <li class="station dash" data-date="2027-02-20"><div class="date">2027・2 月下旬</div><div class="name">學測成績公布</div></li>
+      <li class="station dash" data-date="2027-03-10"><div class="date">2027・3 月中</div><div class="name">繁星推薦　報名 → 放榜</div><div class="note">在校排名＋學測比序；錄取即綁定，報名前想清楚。</div></li>
+      <li class="station dash" data-date="2027-03-20"><div class="date">2027・3 月下旬</div><div class="name">個人申請　報名・一階篩選</div></li>
+      <li class="station dash" data-date="2027-05-01"><div class="date">2027・5 月–6 月初</div><div class="name">個申　審查資料上傳・二階甄試</div><div class="note">學習歷程勾選、自述撰寫、面試都擠在這段，是高三下最忙的一段路。</div></li>
+      <li class="station" data-date="2027-06-03"><div class="date">2027/6/3–6/15</div><div class="name">分科測驗　報名</div><div class="note">個申還在跑也可以先報名分科，留一條路。</div></li>
+      <li class="station dash" data-date="2027-06-16"><div class="date">2027・6 月中</div><div class="name">個申　放榜・統一分發</div></li>
+      <li class="station big" data-date="2027-07-10" data-end="2027-07-11"><div class="date">2027/7/10（六）–7/11（日）</div><div class="name">分科測驗</div><div class="note">與學測成績合併使用於分發入學。</div></li>
+      <li class="station dash" data-date="2027-07-25"><div class="date">2027・7 月下旬</div><div class="name">分科成績公布</div></li>
+      <li class="station dash" data-date="2027-08-01"><div class="date">2027・8 月上旬</div><div class="name">登記分發志願</div><div class="note">最多可填 100 個志願，順序就是策略。</div></li>
+      <li class="station dash" data-date="2027-08-15"><div class="date">2027・8 月中</div><div class="name">分發放榜 🎓</div><div class="note">路線終點。不論從哪一站上車，都會有你的位置。</div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>🧭 入學管道指南</h2>
+    <p class="h2note">四條路線，比的東西不一樣。點開看你適合哪一條。</p>
+
+    <details class="lane"><summary>繁星推薦<span class="tag">看在校排名</span></summary><div class="body">
+      <p><b class="k">是什麼</b>由高中推薦，用「在校成績校排百分比＋學測」比序分發；每人限選一校一學群。</p>
+      <p><b class="k">適合誰</b>高一起在校成績穩定靠前、目標校系明確的人。比的是校排，不是絕對分數。</p>
+      <p><b class="k">關鍵時間</b>3 月報名、當月放榜。錄取後即不得再參加同學年個人申請（醫牙等校系另有第二階段）。</p>
+      <p><b class="k">老師提醒</b>繁星的準備從高一每一次段考就開始了；高三才問繁星，答案已經寫在成績單上。</p>
+    </div></details>
+
+    <details class="lane"><summary>個人申請<span class="tag">看學測＋備審面試</span></summary><div class="body">
+      <p><b class="k">是什麼</b>學測成績過一階篩選後，進二階「審查資料（學習歷程）＋面試或筆試」；至多 6 個志願。</p>
+      <p><b class="k">適合誰</b>對科系有明確想法、學習歷程有累積、口語表達不怯場的人。</p>
+      <p><b class="k">關鍵時間</b>3 月下旬報名與一階、5–6 月二階甄試與放榜。</p>
+      <p><b class="k">老師提醒</b>多數校系二階佔總成績約五成——學測只是入場券，別把全部力氣花在買票上。</p>
+    </div></details>
+
+    <details class="lane"><summary>分發入學<span class="tag teal">看學測＋分科成績</span></summary><div class="body">
+      <p><b class="k">是什麼</b>採計學測＋分科測驗（部分校系含英聽）純成績分發，最多可填 100 個志願。</p>
+      <p><b class="k">適合誰</b>擅長考試、想再拚一次更高目標，或前面管道未如願的人。</p>
+      <p><b class="k">關鍵時間</b>6 月報名分科、7 月考試、8 月登記志願與放榜。</p>
+      <p><b class="k">老師提醒</b>它既是最後一關，也是貨真價實的第二次機會；個申期間別完全放掉分科科目。</p>
+    </div></details>
+
+    <details class="lane"><summary>特殊選才<span class="tag teal">看特殊才能・不採學測</span></summary><div class="body">
+      <p><b class="k">是什麼</b>各大學獨立招生，看競賽、專題、特殊經歷與潛力，不採計學測成績；名額少。</p>
+      <p><b class="k">適合誰</b>在某個領域有具體、拿得出證明的長期投入（競賽、作品、專題研究）的人。</p>
+      <p><b class="k">關鍵時間</b>多在高三上（約 11–12 月）辦理，是所有管道中最早的。</p>
+      <p><b class="k">老師提醒</b>想走這條，高三前的暑假就要開始整理備審——它的時鐘比別人快半年。</p>
+    </div></details>
+  </section>
+
+  <section>
+    <h2>🗂️ 學習歷程檔案提醒</h2>
+    <p class="h2note">高一二就在累積的東西，高三下才會知道它多值錢。件數依現行規定，實際以學校與簡章公告為準。</p>
+    <div class="grade"><h3><span>高一・高二</span>｜按學期結清，不欠帳</h3><ul>
+      <li>課程學習成果做完當學期就上傳送認證——認證有期限，過期任何人都救不了。</li>
+      <li>每學年勾選上傳中央資料庫上限：課程學習成果 6 件、多元表現 10 件。</li>
+      <li>寧可少而完整，不要多而破碎；一份有反思的成果勝過五份流水帳。</li>
+    </ul></div>
+    <div class="grade t"><h3><span>高三上</span>｜盤點與補強</h3><ul>
+      <li>把高一二已上傳的檔案總盤點一次，缺什麼趁上學期補多元表現。</li>
+      <li>走特殊選才的人，這學期就是你的決戰期。</li>
+    </ul></div>
+    <div class="grade t"><h3><span>高三下</span>｜勾選與自述</h3><ul>
+      <li>個申每校系勾選：課程學習成果至多 3 件、多元表現至多 10 件，另撰寫學習歷程自述。</li>
+      <li>繁星放榜到個申資料上傳的間隔很短——自述與勾選策略在放榜前就要動工。</li>
+    </ul></div>
+  </section>
+
+  <section>
+    <h2>🔗 官方資源</h2>
+    <ul class="links">
+      <li><a href="https://www.ceec.edu.tw" rel="noopener">大考中心</a><span>學測・分科・英聽｜簡章、歷屆試題</span></li>
+      <li><a href="https://www.cac.edu.tw" rel="noopener">大學甄選入學委員會</a><span>繁星推薦・個人申請</span></li>
+      <li><a href="https://www.uac.edu.tw" rel="noopener">大學考試入學分發委員會</a><span>分發入學・志願登記</span></li>
+      <li><a href="https://www.jbcrc.edu.tw" rel="noopener">大學招生委員會聯合會</a><span>考招制度總入口</span></li>
+      <li><a href="https://collego.edu.tw" rel="noopener">ColleGo！</a><span>認識學群學系・選系探索</span></li>
+      <li><a href="https://12basic.edu.tw" rel="noopener">108 課綱資訊網</a><span>學習歷程檔案官方說明</span></li>
+      <li><a href="https://ioh.tw" rel="noopener">IOH 開放個人經驗平台</a><span>學長姐科系就讀經驗</span></li>
+    </ul>
+  </section>
+
+  <div class="mmband">
+    <div class="t"><b>日程排好了，數學開始讀。</b><small>學測數學重點整理＋歷屆試題互動詳解，都在教材網。</small></div>
+    <a href="https://mathmap-kitty.github.io/web/">前往 mathmap →</a>
+  </div>
+
+  <footer>
+    資料更新：2026/7/17。考試日期依大考中心 115 年 5 月公告之「116 學年度各項考試暫定報名與考試日期」；標示「歷年慣例」者為往年時段推估。116 簡章預定 2026/8/4 公告，屆時以簡章為準。本頁為升學資訊整理，非官方網站。<br>
+    path-map 升學地圖 © Kitty｜<a href="https://mathmap-kitty.github.io/web/">mathmap 數學教材網</a>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var d0=new Date(); var today=new Date(d0.getFullYear(),d0.getMonth(),d0.getDate());
+  function days(iso){var p=iso.split("-");var t=new Date(+p[0],+p[1]-1,+p[2]);return Math.ceil((t-today)/864e5);}
+
+  /* 下一站看板：目標為兩大考試 */
+  var exams=[
+    {name:"學測", start:"2027-01-22", end:"2027-01-24", label:"2027/1/22（五）– 1/24（日）"},
+    {name:"分科測驗", start:"2027-07-10", end:"2027-07-11", label:"2027/7/10（六）– 7/11（日）"}
+  ];
+  var nameEl=document.getElementById("stopName"), dateEl=document.getElementById("stopDate"),
+      daysEl=document.getElementById("stopDays"), subEl=document.getElementById("boardSub");
+  var target=null;
+  for(var i=0;i<exams.length;i++){ if(days(exams[i].end)>=0){ target=exams[i]; break; } }
+  if(!target){
+    nameEl.childNodes[0].nodeValue="116 考季完賽";
+    dateEl.textContent="辛苦了"; daysEl.textContent="🎓";
+    subEl.textContent="117 學年度日程公告後，本頁會更新。";
+  }else{
+    var dstart=days(target.start);
+    nameEl.childNodes[0].nodeValue=target.name;
+    dateEl.textContent=target.label;
+    if(dstart<=0){ daysEl.textContent="進行中"; subEl.textContent="考試進行中——穩住，把會的都拿下來。"; }
+    else{
+      daysEl.textContent=dstart;
+      var pre=[{name:"英聽第一次考試",start:"2026-10-17",tip:"報名 9/3 起"},{name:"英聽第二次考試",start:"2026-12-12",tip:"報名 11/4 起"}];
+      var near=null;
+      for(var j=0;j<pre.length;j++){ if(days(pre[j].start)>=0 && pre[j].start<target.start){ near=pre[j]; break; } }
+      subEl.textContent = near ? ("更近的一站：" + near.name + "（" + near.start.slice(5).replace("-","/") + "・" + near.tip + "）")
+                               : ("下下站：" + (target.name==="學測" ? "分科測驗 2027/7/10" : "放榜。"));
+    }
+  }
+
+  /* 路線圖：標記已過站＋插入「你在這裡」 */
+  var route=document.getElementById("route");
+  var stations=route.querySelectorAll(".station");
+  var inserted=false;
+  for(var k=0;k<stations.length;k++){
+    var s=stations[k];
+    var endIso=s.getAttribute("data-end")||s.getAttribute("data-date");
+    if(days(endIso)<0){ s.classList.add("past"); }
+    else if(!inserted){
+      var li=document.createElement("li");
+      li.className="youmark";
+      li.innerHTML="<b>你在這裡</b>";
+      route.insertBefore(li,s);
+      inserted=true;
+    }
+  }
+  if(!inserted){
+    var li2=document.createElement("li");
+    li2.className="youmark"; li2.innerHTML="<b>你在這裡——全程完賽 🎓</b>";
+    route.appendChild(li2);
+  }
+})();
+</script>
+</body>
+</html>
