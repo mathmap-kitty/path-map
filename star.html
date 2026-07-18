@@ -32,6 +32,8 @@ body{margin:0;display:flex;flex-direction:column;overflow:hidden;background:var(
 .topbar input[type=text]{flex:1;min-width:150px;font-weight:400;color:var(--ink)}
 label.ck{display:flex;align-items:center;gap:5px;font-size:13px;color:rgba(255,255,255,.92);white-space:nowrap;cursor:pointer}
 label.ck input{accent-color:#fff}
+.topbar a.ghost{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.5);
+  border-radius:var(--radius-pill);padding:4px 12px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap}
 main{flex:1;overflow:auto;padding:0 18px 70px}
 main>*{max-width:1200px;margin-left:auto;margin-right:auto}
 .cnt{color:var(--mut);font-size:12.5px;margin:10px 2px 8px;line-height:1.7}
@@ -93,7 +95,7 @@ tr.hintrow:hover td{background:inherit}
 <header class="topbar">
 <div class="tb-row">
 <div class="tb-title">繁星錄取標準查詢 <span class="tb-sub">111–115 學年度・第1–8類學群</span></div>
-<label class="ck"><input type="checkbox" id="ck-ex">含外加名額</label>
+<label class="ck"><input type="checkbox" id="ck-ex">含外加名額</label><a class="ghost" href="./">⇄ 升學地圖</a>
 </div>
 <div class="controls">
 <select id="sel-grp"><option value="">全部學群</option></select>
