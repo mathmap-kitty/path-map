@@ -150,13 +150,14 @@ ol.route::before{
 .station.past{opacity:.5;}
 .station.past .name::after{content:"　✓"; font-size:13px; color:var(--mut);}
 
-.youmark{position:relative; padding:2px 0 22px 40px; list-style:none;}
+.youmark{position:relative; padding:2px 0 48px 72px; list-style:none;}
 .youmark::before{
   content:""; position:absolute; left:5px; top:6px; width:16px; height:16px;
   border-radius:50%; background:var(--teal);
   box-shadow:0 0 0 4px rgba(31,111,120,.22);
   animation:pulse 1.8s ease-out infinite;
 }
+.youmark img.qq{position:absolute; left:11px; top:-6px; height:72px; transform:scaleX(-1); pointer-events:none;}
 .youmark b{color:var(--teal); font-size:14px; font-weight:900; letter-spacing:.06em;}
 @keyframes pulse{
   0%{box-shadow:0 0 0 3px rgba(31,111,120,.35);}
@@ -330,8 +331,6 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
       <li><a href="https://ioh.tw" rel="noopener">IOH 開放個人經驗平台</a><span>學長姐科系就讀經驗</span></li>
     </ul>
   </section>
-    <a href="https://mathmap-kitty.github.io/web/">前往 mathmap →</a>
-  </div>
 
   <footer>
     資料更新：2026/7/17。考試日期依大考中心 115 年 5 月公告之「116 學年度各項考試暫定報名與考試日期」；標示「歷年慣例」者為往年時段推估。116 簡章預定 2026/8/4 公告，屆時以簡章為準。本頁為升學資訊整理，非官方網站。<br>
@@ -383,14 +382,14 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     else if(!inserted){
       var li=document.createElement("li");
       li.className="youmark";
-      li.innerHTML="<b>你在這裡</b> <span style=\"font-size:11px;background:#f0dde3;color:#6f1f33;border-radius:999px;padding:1px 8px;margin-left:6px;font-weight:700\">QQ心怡</span>";
+      li.innerHTML="<img class=\"qq\" src=\"qq.png\" alt=\"QQ心怡\"><b>你在這裡</b>";
       route.insertBefore(li,s);
       inserted=true;
     }
   }
   if(!inserted){
     var li2=document.createElement("li");
-    li2.className="youmark"; li2.innerHTML="<b>你在這裡——全程完賽 🎓</b> <span style=\"font-size:11px;background:#f0dde3;color:#6f1f33;border-radius:999px;padding:1px 8px;margin-left:6px;font-weight:700\">QQ心怡</span>";
+    li2.className="youmark"; li2.innerHTML="<img class=\"qq\" src=\"qq.png\" alt=\"QQ心怡\"><b>你在這裡——全程完賽 🎓</b>";
     route.appendChild(li2);
   }
 })();
