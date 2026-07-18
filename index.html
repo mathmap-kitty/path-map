@@ -10,6 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta name="theme-color" content="#8c2740">
+<link rel="icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%238c2740'/%3E%3Ctext x='50' y='74' font-size='62' text-anchor='middle' fill='%23fff' font-family='Microsoft JhengHei,sans-serif' font-weight='700'%3E%E5%8D%87%3C/text%3E%3C/svg%3E">
 <style>
 /* ============================================================
    mathmap 網頁風格標準 v1（2026-07-07）— 全站共用
@@ -329,9 +330,6 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
       <li><a href="https://ioh.tw" rel="noopener">IOH 開放個人經驗平台</a><span>學長姐科系就讀經驗</span></li>
     </ul>
   </section>
-
-  <div class="mmband">
-    <div class="t"><b>日程排好了，數學開始讀。</b><small>學測數學重點整理＋歷屆試題互動詳解，都在教材網。</small></div>
     <a href="https://mathmap-kitty.github.io/web/">前往 mathmap →</a>
   </div>
 
@@ -385,14 +383,14 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     else if(!inserted){
       var li=document.createElement("li");
       li.className="youmark";
-      li.innerHTML="<b>你在這裡</b>";
+      li.innerHTML="<b>你在這裡</b> <span style=\"font-size:11px;background:#f0dde3;color:#6f1f33;border-radius:999px;padding:1px 8px;margin-left:6px;font-weight:700\">QQ心怡</span>";
       route.insertBefore(li,s);
       inserted=true;
     }
   }
   if(!inserted){
     var li2=document.createElement("li");
-    li2.className="youmark"; li2.innerHTML="<b>你在這裡——全程完賽 🎓</b>";
+    li2.className="youmark"; li2.innerHTML="<b>你在這裡——全程完賽 🎓</b> <span style=\"font-size:11px;background:#f0dde3;color:#6f1f33;border-radius:999px;padding:1px 8px;margin-left:6px;font-weight:700\">QQ心怡</span>";
     route.appendChild(li2);
   }
 })();
