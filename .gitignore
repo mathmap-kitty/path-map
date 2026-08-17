@@ -1,0 +1,17 @@
+# 這個 repo 是 public，而且是 GitHub Pages 的來源。
+# 只放網站實際會用到的檔案，其餘一律排除。
+
+# 建置流程：程式碼、下載的 331 張甄選會圖檔、中間產物，共約 218 MB
+_build/
+
+# 資料來源與工作檔（簡章、判斷用試算表、PDF）
+*.xlsx
+*.xls
+*.pdf
+
+# 未被任何網頁引用的素材
+mathmap-theme.css
+QQ心怡.png
+
+# 工具設定
+.claude/
