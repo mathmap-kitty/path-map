@@ -222,6 +222,16 @@ ul.links span{color:var(--mut); font-size:12.5px; text-align:right;}
   padding:9px 16px; border-radius:var(--radius-pill); white-space:nowrap;
 }
 
+.jump{display:flex; gap:8px; flex-wrap:wrap; margin:16px 0 2px;}
+.jump a{background:var(--rose-tag); color:var(--maroon-d); border:1px solid var(--line);
+  border-radius:var(--radius-pill); padding:5px 14px; font-size:13.5px; font-weight:700;
+  text-decoration:none; white-space:nowrap;}
+.jump a:hover{background:var(--maroon); color:#fff; border-color:var(--maroon);}
+.jump a:focus-visible{outline:2px solid var(--maroon); outline-offset:2px;}
+html{scroll-behavior:smooth;}
+section[id]{scroll-margin-top:72px;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+@media(max-width:560px){.jump a{padding:4px 11px; font-size:12.5px;}}
 footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); color:var(--mut); font-size:12.5px; line-height:1.8;}
 </style>
 </head>
@@ -246,7 +256,13 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     <div class="sub" id="boardSub"></div>
   </div>
 
-  <section>
+  <nav class="jump" aria-label="快速跳到">
+    <a href="#lanes">🧭 入學管道指南</a>
+    <a href="#portfolio">🗂️ 學習歷程提醒</a>
+    <a href="#links">🔗 官方資源</a>
+  </nav>
+
+  <section id="route-sec">
     <h2>🗺️ 116 學年度升學路線圖</h2>
     <p class="h2note">適用：2026 年 9 月升高三的你（116 學年度考生）。青綠點＝你現在的位置。</p>
     <div class="legend">
@@ -292,7 +308,7 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     </ol>
   </section>
 
-  <section>
+  <section id="lanes">
     <h2>🧭 入學管道指南</h2>
     <p class="h2note">五條路線，比的東西不一樣。點開看你適合哪一條。</p>
 
@@ -335,7 +351,7 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     </div></details>
   </section>
 
-  <section>
+  <section id="portfolio">
     <h2>🗂️ 學習歷程檔案提醒</h2>
     <p class="h2note">高一二就在累積的東西，高三下才會知道它多值錢。件數依現行規定，實際以學校與簡章公告為準。</p>
     <div class="grade"><h3><span>高一・高二</span>｜按學期結清，不欠帳</h3><ul>
@@ -353,7 +369,7 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     </ul></div>
   </section>
 
-  <section>
+  <section id="links">
     <h2>🔗 官方資源</h2>
     <ul class="links">
       <li><a href="https://www.ceec.edu.tw" target="_blank" rel="noopener">大考中心</a><span>學測・分科・英聽｜簡章、歷屆試題</span></li>
