@@ -128,7 +128,7 @@ tr.hintrow:hover td{background:inherit}
 <div class="scorepanel" id="scorepanel" hidden>
   <div class="sp-row"><label class="sp-f">國文<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-0" placeholder="級分"></label><label class="sp-f">英文<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-1" placeholder="級分"></label><label class="sp-f">數學A<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-2" placeholder="級分"></label><label class="sp-f">數學B<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-3" placeholder="級分"></label><label class="sp-f">社會<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-4" placeholder="級分"></label><label class="sp-f">自然<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-5" placeholder="級分"></label><label class="sp-f">英聽<select id="sc-eng"><option value="">未考</option><option value="A">A級</option><option value="B">B級</option><option value="C">C級</option><option value="F">F級</option></select></label></div>
   <div class="sp-act"><label><input type="checkbox" id="ck-filter">只顯示<b>檢定通過</b>的校系</label><button type="button" class="sp-clear" id="sp-clear">清除成績</button></div>
-  <div class="sp-note">依各系<b>115 學年檢定標準</b>與該年五標級分判定；空白視為未考該科。成績只留在你自己的瀏覽器，不會上傳。實際門檻以當年度簡章為準。</div>
+  <div class="sp-note">依各系 <b>115 學年檢定標準</b>與 <b>115 學年學測五標</b>判定；空白視為未考該科。成績只留在你自己的瀏覽器，不會上傳。實際門檻以當年度簡章為準。</div>
 </div>
 <div class="cnt" id="cnt"></div>
 <table id="list"><thead><tr>
@@ -163,7 +163,8 @@ function cellHTML(c){
   return '<td>'+inner+'</td>';
 }
 const BIAO={"115":{"國文":{"頂標":13,"前標":12,"均標":10,"後標":9,"底標":7},"英文":{"頂標":13,"前標":11,"均標":8,"後標":5,"底標":3},"數學A":{"頂標":12,"前標":10,"均標":8,"後標":5,"底標":4},"數學B":{"頂標":11,"前標":9,"均標":5,"後標":3,"底標":2},"社會":{"頂標":13,"前標":12,"均標":10,"後標":8,"底標":7},"自然":{"頂標":13,"前標":12,"均標":9,"後標":7,"底標":5}},"114":{"國文":{"頂標":13,"前標":12,"均標":10,"後標":9,"底標":7},"英文":{"頂標":13,"前標":11,"均標":8,"後標":4,"底標":3},"數學A":{"頂標":11,"前標":9,"均標":6,"後標":4,"底標":3},"數學B":{"頂標":12,"前標":10,"均標":6,"後標":4,"底標":3},"社會":{"頂標":13,"前標":12,"均標":10,"後標":8,"底標":7},"自然":{"頂標":13,"前標":12,"均標":9,"後標":7,"底標":5}},"113":{"國文":{"頂標":13,"前標":12,"均標":11,"後標":9,"底標":8},"英文":{"頂標":13,"前標":11,"均標":8,"後標":5,"底標":3},"數學A":{"頂標":12,"前標":10,"均標":7,"後標":5,"底標":3},"數學B":{"頂標":12,"前標":9,"均標":6,"後標":4,"底標":3},"社會":{"頂標":13,"前標":12,"均標":10,"後標":8,"底標":6},"自然":{"頂標":13,"前標":12,"均標":9,"後標":6,"底標":5}},"112":{"國文":{"頂標":13,"前標":12,"均標":11,"後標":9,"底標":8},"英文":{"頂標":13,"前標":11,"均標":8,"後標":5,"底標":4},"數學A":{"頂標":11,"前標":9,"均標":7,"後標":5,"底標":4},"數學B":{"頂標":12,"前標":10,"均標":7,"後標":4,"底標":3},"社會":{"頂標":12,"前標":11,"均標":9,"後標":8,"底標":6},"自然":{"頂標":13,"前標":11,"均標":9,"後標":6,"底標":5}},"111":{"國文":{"頂標":13,"前標":13,"均標":11,"後標":10,"底標":8},"英文":{"頂標":14,"前標":12,"均標":9,"後標":6,"底標":4},"數學A":{"頂標":10,"前標":8,"均標":6,"後標":4,"底標":3},"數學B":{"頂標":13,"前標":11,"均標":8,"後標":4,"底標":3},"社會":{"頂標":14,"前標":13,"均標":11,"後標":9,"底標":7},"自然":{"頂標":13,"前標":11,"均標":9,"後標":6,"底標":5}}};
-const SUBS=["國文", "英文", "數學A", "數學B", "社會", "自然"];
+const BIAOY="115";
+const SUBS=["國文","英文","數學A","數學B","社會","自然"];
 const ENGR={A:1,B:2,C:3,F:4};
 const btnScore=document.getElementById('btn-score'),panel=document.getElementById('scorepanel'),
       ckFilter=document.getElementById('ck-filter'),selEng=document.getElementById('sc-eng');
@@ -172,7 +173,7 @@ function myScores(){const o={};SUBS.forEach((n,i)=>{const v=scEls[i].value.trim(
   return {sub:o,eng:selEng.value};}
 function passChk(d){
   if(!d.chk||!d.chk.length)return true;
-  const b=BIAO[String(d.ymax)]||BIAO['115'],me=myScores();
+  const b=BIAO[BIAOY]||BIAO[String(d.ymax)],me=myScores();
   for(const pair of d.chk){
     const sub=pair[0],std=pair[1];
     if(sub==='英聽'){
@@ -193,7 +194,8 @@ function passChk(d){
 function saveScores(){try{const me=myScores();localStorage.setItem('star_scores',JSON.stringify({s:me.sub,e:me.eng,on:ckFilter.checked}));}catch(e){}}
 function loadScores(){try{const r=JSON.parse(localStorage.getItem('star_scores')||'null');if(!r)return;
   SUBS.forEach((n,i)=>{if(r.s&&r.s[n]!=null)scEls[i].value=r.s[n];});
-  if(r.e)selEng.value=r.e; if(r.on){ckFilter.checked=true;panel.hidden=false;btnScore.classList.add('on');btnScore.setAttribute('aria-expanded','true');}
+  if(r.e)selEng.value=r.e;
+  if(r.on){ckFilter.checked=true;panel.hidden=false;btnScore.classList.add('on');btnScore.setAttribute('aria-expanded','true');}
 }catch(e){}}
 btnScore.addEventListener('click',()=>{const open=panel.hidden;panel.hidden=!open;
   btnScore.setAttribute('aria-expanded',String(open));btnScore.classList.toggle('on',open||ckFilter.checked);});
