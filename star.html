@@ -60,6 +60,26 @@ tr.hintrow:hover td{background:inherit}
 .r2b{display:inline-block;color:var(--ok);font-size:11.5px;font-weight:700;line-height:1.3}
 .none{color:#d8cbc3}
 .oldname{color:var(--mut);font-size:12px;font-weight:400}
+.tb-score{background:#fff;color:var(--maroon-d);border:none;border-radius:20px;
+  padding:6px 14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap;}
+.tb-score.on{background:var(--teal);color:#fff;}
+.scorepanel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-m);
+  padding:12px 14px;margin:10px auto 0;box-shadow:var(--shadow-card);}
+.scorepanel[hidden]{display:none;}
+.sp-row{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:flex-end;}
+.sp-f{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--mut);font-weight:700;}
+.sp-f input,.sp-f select{width:74px;font:inherit;font-size:14px;padding:5px 8px;
+  border:1px solid var(--line);border-radius:var(--radius-s);background:var(--card);color:var(--ink);}
+.sp-f input:focus-visible,.sp-f select:focus-visible{outline:2px solid var(--maroon);outline-offset:1px;}
+.sp-act{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px;
+  padding-top:10px;border-top:1px solid var(--line);}
+.sp-act label{display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--maroon-d);cursor:pointer;}
+.sp-act label input{accent-color:var(--maroon);width:16px;height:16px;}
+.sp-clear{background:none;border:1px solid var(--line);color:var(--mut);border-radius:var(--radius-pill);
+  padding:3px 12px;font:inherit;font-size:12.5px;cursor:pointer;}
+.sp-note{font-size:12px;color:var(--mut);margin-top:8px;line-height:1.6;}
+.filtered{color:var(--teal);font-weight:700;}
+@media(max-width:560px){.sp-f input,.sp-f select{width:62px;font-size:13px;}}
 #detail{position:fixed;inset:0;background:rgba(60,20,30,.45);display:none;align-items:flex-start;justify-content:center;padding:4vh 12px;z-index:100}
 #detail.on{display:flex}
 .dcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-l);max-width:980px;width:100%;
@@ -95,6 +115,7 @@ tr.hintrow:hover td{background:inherit}
 <header class="topbar">
 <div class="tb-row">
 <div class="tb-title">繁星錄取標準查詢 <span class="tb-sub">111–115 學年度・第1–8類學群</span></div>
+<button type="button" id="btn-score" class="tb-score" aria-expanded="false">📝 學測檢定篩選</button>
 <label class="ck"><input type="checkbox" id="ck-ex">含外加名額</label><a class="ghost" href="./">⇄ 升學地圖</a>
 </div>
 <div class="controls">
@@ -104,6 +125,11 @@ tr.hintrow:hover td{background:inherit}
 </div>
 </header>
 <main>
+<div class="scorepanel" id="scorepanel" hidden>
+  <div class="sp-row"><label class="sp-f">國文<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-0" placeholder="級分"></label><label class="sp-f">英文<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-1" placeholder="級分"></label><label class="sp-f">數學A<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-2" placeholder="級分"></label><label class="sp-f">數學B<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-3" placeholder="級分"></label><label class="sp-f">社會<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-4" placeholder="級分"></label><label class="sp-f">自然<input type="number" min="0" max="15" step="1" inputmode="numeric" id="sc-5" placeholder="級分"></label><label class="sp-f">英聽<select id="sc-eng"><option value="">未考</option><option value="A">A級</option><option value="B">B級</option><option value="C">C級</option><option value="F">F級</option></select></label></div>
+  <div class="sp-act"><label><input type="checkbox" id="ck-filter">只顯示<b>檢定通過</b>的校系</label><button type="button" class="sp-clear" id="sp-clear">清除成績</button></div>
+  <div class="sp-note">依各系<b>115 學年檢定標準</b>與該年五標級分判定；空白視為未考該科。成績只留在你自己的瀏覽器，不會上傳。實際門檻以當年度簡章為準。</div>
+</div>
 <div class="cnt" id="cnt"></div>
 <table id="list"><thead><tr>
 <th class="nm">系所(115系名)</th><th class="sc">學校</th><th>學群</th>
@@ -136,6 +162,45 @@ function cellHTML(c){
   if(!inner){inner='<span class="none">—</span>';}
   return '<td>'+inner+'</td>';
 }
+const BIAO={"115":{"國文":{"頂標":13,"前標":12,"均標":10,"後標":9,"底標":7},"英文":{"頂標":13,"前標":11,"均標":8,"後標":5,"底標":3},"數學A":{"頂標":12,"前標":10,"均標":8,"後標":5,"底標":4},"數學B":{"頂標":11,"前標":9,"均標":5,"後標":3,"底標":2},"社會":{"頂標":13,"前標":12,"均標":10,"後標":8,"底標":7},"自然":{"頂標":13,"前標":12,"均標":9,"後標":7,"底標":5}},"114":{"國文":{"頂標":13,"前標":12,"均標":10,"後標":9,"底標":7},"英文":{"頂標":13,"前標":11,"均標":8,"後標":4,"底標":3},"數學A":{"頂標":11,"前標":9,"均標":6,"後標":4,"底標":3},"數學B":{"頂標":12,"前標":10,"均標":6,"後標":4,"底標":3},"社會":{"頂標":13,"前標":12,"均標":10,"後標":8,"底標":7},"自然":{"頂標":13,"前標":12,"均標":9,"後標":7,"底標":5}},"113":{"國文":{"頂標":13,"前標":12,"均標":11,"後標":9,"底標":8},"英文":{"頂標":13,"前標":11,"均標":8,"後標":5,"底標":3},"數學A":{"頂標":12,"前標":10,"均標":7,"後標":5,"底標":3},"數學B":{"頂標":12,"前標":9,"均標":6,"後標":4,"底標":3},"社會":{"頂標":13,"前標":12,"均標":10,"後標":8,"底標":6},"自然":{"頂標":13,"前標":12,"均標":9,"後標":6,"底標":5}},"112":{"國文":{"頂標":13,"前標":12,"均標":11,"後標":9,"底標":8},"英文":{"頂標":13,"前標":11,"均標":8,"後標":5,"底標":4},"數學A":{"頂標":11,"前標":9,"均標":7,"後標":5,"底標":4},"數學B":{"頂標":12,"前標":10,"均標":7,"後標":4,"底標":3},"社會":{"頂標":12,"前標":11,"均標":9,"後標":8,"底標":6},"自然":{"頂標":13,"前標":11,"均標":9,"後標":6,"底標":5}},"111":{"國文":{"頂標":13,"前標":13,"均標":11,"後標":10,"底標":8},"英文":{"頂標":14,"前標":12,"均標":9,"後標":6,"底標":4},"數學A":{"頂標":10,"前標":8,"均標":6,"後標":4,"底標":3},"數學B":{"頂標":13,"前標":11,"均標":8,"後標":4,"底標":3},"社會":{"頂標":14,"前標":13,"均標":11,"後標":9,"底標":7},"自然":{"頂標":13,"前標":11,"均標":9,"後標":6,"底標":5}}};
+const SUBS=["國文", "英文", "數學A", "數學B", "社會", "自然"];
+const ENGR={A:1,B:2,C:3,F:4};
+const btnScore=document.getElementById('btn-score'),panel=document.getElementById('scorepanel'),
+      ckFilter=document.getElementById('ck-filter'),selEng=document.getElementById('sc-eng');
+const scEls=SUBS.map((n,i)=>document.getElementById('sc-'+i));
+function myScores(){const o={};SUBS.forEach((n,i)=>{const v=scEls[i].value.trim();o[n]=v===''?null:+v;});
+  return {sub:o,eng:selEng.value};}
+function passChk(d){
+  if(!d.chk||!d.chk.length)return true;
+  const b=BIAO[String(d.ymax)]||BIAO['115'],me=myScores();
+  for(const pair of d.chk){
+    const sub=pair[0],std=pair[1];
+    if(sub==='英聽'){
+      const need=ENGR[String(std)[0]];
+      if(!need)continue;
+      if(!me.eng)return false;
+      if(ENGR[me.eng]>need)return false;
+    }else{
+      const tbl=b&&b[sub];if(!tbl)continue;
+      const need=tbl[std];if(need==null)continue;
+      const got=me.sub[sub];
+      if(got==null)return false;
+      if(got<need)return false;
+    }
+  }
+  return true;
+}
+function saveScores(){try{const me=myScores();localStorage.setItem('star_scores',JSON.stringify({s:me.sub,e:me.eng,on:ckFilter.checked}));}catch(e){}}
+function loadScores(){try{const r=JSON.parse(localStorage.getItem('star_scores')||'null');if(!r)return;
+  SUBS.forEach((n,i)=>{if(r.s&&r.s[n]!=null)scEls[i].value=r.s[n];});
+  if(r.e)selEng.value=r.e; if(r.on){ckFilter.checked=true;panel.hidden=false;btnScore.classList.add('on');btnScore.setAttribute('aria-expanded','true');}
+}catch(e){}}
+btnScore.addEventListener('click',()=>{const open=panel.hidden;panel.hidden=!open;
+  btnScore.setAttribute('aria-expanded',String(open));btnScore.classList.toggle('on',open||ckFilter.checked);});
+scEls.concat([selEng]).forEach(el=>el.addEventListener('input',()=>{saveScores();if(ckFilter.checked)render();}));
+ckFilter.addEventListener('change',()=>{btnScore.classList.toggle('on',ckFilter.checked||!panel.hidden);saveScores();render();});
+document.getElementById('sp-clear').addEventListener('click',()=>{scEls.forEach(e=>e.value='');selEng.value='';
+  saveScores();if(ckFilter.checked)render();});
 function render(){
   const g=selg.value,kw=q.value.trim();
   let ds=DATA.depts;
@@ -146,13 +211,15 @@ function render(){
     .map(s=>'<option value="'+s.c+'"'+(String(s.c)===keep?' selected':'')+'>'+String(s.c).padStart(3,'0')+' '+esc(s.n)+'</option>').join('');
   if(keep!=='all')ds=ds.filter(d=>d.sch===+keep);
   if(kw)ds=ds.filter(d=>d.allnames.includes(kw)||d.name.includes(kw));
+  const nBefore=ds.length, useChk=ckFilter&&ckFilter.checked;
+  if(useChk)ds=ds.filter(passChk);
   listtb.classList.toggle('one-school',keep!=='all');
   if(keep==='all'&&!g&&!kw){
     cnt.innerHTML='<span class="legend">'+LEGEND+'</span>';
     tbody.innerHTML='<tr class="hintrow"><td colspan="8">請先選<b>學群</b>或<b>學校</b>，或直接輸入系名關鍵字（例：護理、資工、財金）</td></tr>';
     return;
   }
-  cnt.innerHTML='<b>'+ds.length+'</b> 個系所　<span class="legend">'+LEGEND+'</span>';
+  cnt.innerHTML='<b>'+ds.length+'</b> 個系所'+(useChk?'<span class="filtered">（學測檢定通過；已濾掉 '+(nBefore-ds.length)+' 個）</span>':'')+'　<span class="legend">'+LEGEND+'</span>';
   tbody.innerHTML=ds.map(d=>{
     const cells=YEARS.map(y=>cellHTML(d.cells[y])).join('');
     const dead=d.ymax<115?' <span class="oldname">(至'+d.ymax+')</span>':'';
@@ -194,6 +261,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')dlg.classList.remove
 sel.addEventListener('change',render);selg.addEventListener('change',render);
 q.addEventListener('input',render);ckex.addEventListener('change',render);
 sel.innerHTML='<option value="all">全部學校</option>';sel.value='all';
+loadScores();
 render();
 </script>
 </body>
