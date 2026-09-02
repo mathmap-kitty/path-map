@@ -69,11 +69,58 @@ Windows 工作排程器裡有一個工作：
 * 抓不到網頁時**不覆寫**既有資料，只在 log 標記，下週再試。
 * 抓到的筆數比上次少三成以上就中止更新——那通常代表網站改版或被擋，不是真的少了那麼多校系。
 
+### 重灌或換電腦之後怎麼裝回來
+
+工作排程本身不在 repo 裡（它是 Windows 的設定，不是檔案），但註冊腳本在。
+clone 完 repo、確認 Python 裝好且在 PATH 上，然後在 repo 根目錄跑：
+
+```
+powershell -ExecutionPolicy Bypass -File _build\register_sport_watch.ps1
+```
+
+它會自己找 `pythonw.exe`、用 `_build` 當工作目錄註冊每週日 09:00 的工作，
+並印出下次執行時間與「先手動跑一次確認」的指令。想換時間就加參數：
+
+```
+powershell -ExecutionPolicy Bypass -File _build\register_sport_watch.ps1 -DayOfWeek Monday -At 07:30
+```
+
 停掉排程：
+
+```
+powershell -ExecutionPolicy Bypass -File _build\register_sport_watch.ps1 -Unregister
+```
+
+或直接下：
 
 ```
 Unregister-ScheduledTask -TaskName 'path-map 體育班單招每週檢核' -Confirm:$false
 ```
+
+### 註冊腳本裡三個「別拿掉」的設定
+
+都是實測踩出來的坑，改腳本前先看一眼：
+
+* **用 `pythonw.exe`，不要用 `run_sport_watch.bat`。** Task Scheduler 執行 .bat 時，
+  cmd 的主控台一關就回 `0xC000013A`（Ctrl-C 結束），任務等於沒跑成。
+  `pythonw` 沒有主控台就沒這問題。`run_sport_watch.bat` 留著給你手動雙擊用。
+* **`-AllowStartIfOnBatteries -DontStopIfGoingOnBatteries`。**
+  `New-ScheduledTaskSettingsSet` 預設「使用電池時不啟動」，筆電沒插電時工作會一直卡在
+  `Queued` 不執行——而且 `LastTaskResult` 還是顯示 `0`，非常難發現。
+* **不要加 `-RunOnlyIfNetworkAvailable`。** 同樣會卡在 `Queued`。
+  抓不到網頁時 `fetch_sport.py` 本來就會記 log 並保留舊資料，讓它跑下去再失敗比較好。
+
+### 怎麼確認它真的有在跑
+
+不要只看 `LastTaskResult`——卡在 `Queued` 的時候它也是 0。要看兩個地方：
+
+```
+Get-ScheduledTaskInfo -TaskName 'path-map 體育班單招每週檢核' | Select-Object LastRunTime,LastTaskResult
+(Get-ScheduledTask -TaskName 'path-map 體育班單招每週檢核').State
+```
+
+`State` 應該是 `Ready`（執行中會短暫變 `Running`）。**真正的證據是 `sport_watch_log.md`
+最下面有沒有多出一段當天的紀錄**——有寫進去才代表程式真的跑完了。
 
 ## 一個環境細節
 

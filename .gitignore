@@ -12,6 +12,7 @@ _build/*
 !_build/build_sport.py
 !_build/fetch_sport.py
 !_build/run_sport_watch.bat
+!_build/register_sport_watch.ps1
 !_build/sport_template.html
 !_build/sport_src_quota.json
 !_build/sport_src_single.json
