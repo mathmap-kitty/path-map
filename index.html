@@ -166,6 +166,9 @@ ol.route::before{
   animation:pulse 1.8s ease-out infinite;
 }
 .youmark img.qq{position:absolute; left:11px; top:-6px; height:72px; transform:scaleX(-1); pointer-events:none;}
+.youmark .left{display:inline-block;margin-left:8px;background:var(--teal);color:#fff;border-radius:999px;padding:1px 10px;font-size:11.5px;font-weight:800;letter-spacing:.03em;vertical-align:middle;}
+.station.ongoing{background:#eaf4f5;border-radius:var(--radius-s);box-shadow:0 0 0 6px #eaf4f5;}
+.station.ongoing .name::before{content:"進行中";display:inline-block;vertical-align:middle;margin-right:8px;background:var(--teal);color:#fff;border-radius:999px;padding:1px 10px;font-size:11.5px;font-weight:800;letter-spacing:.04em;}
 .youmark b{color:var(--teal); font-size:14px; font-weight:900; letter-spacing:.06em;}
 @keyframes pulse{
   0%{box-shadow:0 0 0 3px rgba(31,111,120,.35);}
@@ -245,7 +248,7 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     <option value="portfolio">🗂️ 學習歷程提醒</option>
     <option value="links">🔗 官方資源</option>
   </select>
-  <a class="ghost" href="https://mathmap-kitty.github.io/web/">⇄ mathmap 教材網</a>
+  <a class="ghost" href="https://mathmap-kitty.github.io/web/" target="_blank" rel="noopener">⇄ mathmap 教材網</a>
 </div>
 
 <div class="wrap">
@@ -387,8 +390,8 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
   </section>
 
   <footer>
-    資料更新：2026/8/20。考試日期已依「116 學年度考試簡章」（115.8.4 初版）與「116 學年度大學術科考試簡章」逐項核對。繁星推薦與個人申請日期依甄選會「116 學年度重要日期（暫定）」，正式簡章 115.11.03 公告後將再核對。標示「歷年慣例」者為往年時段推估。本頁為升學資訊整理，非官方網站。<br>
-    path-map 升學地圖 © Kitty｜<a href="https://mathmap-kitty.github.io/web/">mathmap 數學教材網</a>
+    資料更新：2026/9/2。考試日期已依「116 學年度考試簡章」（115.8.4 初版）與「116 學年度大學術科考試簡章」逐項核對。繁星推薦與個人申請日期依甄選會「116 學年度重要日期（暫定）」，正式簡章 115.11.03 公告後將再核對。標示「歷年慣例」者為往年時段推估。本頁為升學資訊整理，非官方網站。<br>
+    path-map 升學地圖 © Kitty｜<a href="https://mathmap-kitty.github.io/web/" target="_blank" rel="noopener">mathmap 數學教材網</a>
   </footer>
 </div>
 
@@ -436,7 +439,15 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     else if(!inserted){
       var li=document.createElement("li");
       li.className="youmark";
-      li.innerHTML="<img class=\"qq\" src=\"qq.png\" alt=\"QQ心怡\"><b>你在這裡</b>";
+      var startIso=s.getAttribute("data-date"),endIso2=s.getAttribute("data-end")||startIso;
+      var dStart=days(startIso),dEnd=days(endIso2),label="<b>你在這裡</b>";
+      if(dStart<=0&&dEnd>=0){
+        s.classList.add("ongoing");
+        label="<b>你在這裡・進行中</b><span class=\"left\">"+(dEnd===0?"今天最後一天":"還剩 "+dEnd+" 天")+"</span>";
+      }else if(dStart>0){
+        label="<b>你在這裡</b><span class=\"left\">距下一站 "+dStart+" 天</span>";
+      }
+      li.innerHTML="<img class=\"qq\" src=\"qq.png\" alt=\"QQ心怡\">"+label;
       route.insertBefore(li,s);
       inserted=true;
     }
