@@ -18,6 +18,7 @@ _build/*
 !_build/sport_src_single.json
 !_build/sport_src_apply.json
 !_build/sport_notices.json
+!_build/sport_years.json
 !_build/make_handout.js
 !_build/make_deck.js
 !_build/doc_tiers.json
