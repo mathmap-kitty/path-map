@@ -28,7 +28,7 @@ body{margin:0;background:#e9e2dd;color:var(--ink);
 .sheet{
   width:210mm;min-height:297mm;margin:0 auto 24px;padding:11mm 12mm 9mm;
   background:#fff;box-shadow:0 6px 26px rgba(80,40,30,.22);
-  display:flex;flex-direction:column;gap:3.6mm;
+  display:flex;flex-direction:column;gap:3.1mm;
 }
 h1{margin:0;font-size:19pt;color:var(--maroon);letter-spacing:.5px;line-height:1.25}
 .sub{margin:1mm 0 0;font-size:9.6pt;color:var(--mut)}
@@ -73,7 +73,8 @@ h2 span{font-size:8.8pt;font-weight:400;color:var(--mut);margin-left:2mm}
 .warns{display:grid;grid-template-columns:repeat(3,1fr);gap:2.6mm}
 .wn{border:.8pt solid #e0b9a6;border-left:3pt solid var(--maroon);background:#fff8f2;
   border-radius:2mm;padding:2.4mm 3mm;font-size:8.9pt;line-height:1.45}
-.wn b{display:block;color:var(--maroon-d);font-size:9.6pt;margin-bottom:.8mm}
+.wn b{color:var(--maroon-d)}
+.wn b.h{display:block;font-size:9.6pt;margin-bottom:.8mm}
 
 .foot{margin-top:auto;border-top:.8pt dashed var(--line);padding-top:1.8mm;
   font-size:7.2pt;color:var(--mut);line-height:1.5;display:flex;gap:4mm;justify-content:space-between;align-items:flex-end}
@@ -84,9 +85,9 @@ h2 span{font-size:8.8pt;font-weight:400;color:var(--mut);margin-left:2mm}
   @page{size:A4;margin:0}
   body{background:#fff}
   .toolbar{display:none}
-  .sheet{width:auto;min-height:auto;margin:0;box-shadow:none;padding:8mm 10mm 6mm}
-  /* 內容剛好比一頁多一點點，整體縮 6% 讓它收在同一張紙上 */
-  .sheet{zoom:.94}
+  .sheet{width:auto;min-height:auto;margin:0;box-shadow:none;padding:7mm 10mm 4mm}
+  /* 內容剛好比一頁多一點點，整體縮一點讓它收在同一張紙上 */
+  .sheet{zoom:.86}
 }
 @media screen and (max-width:820px){
   .sheet{width:auto;min-height:auto;padding:6mm}
@@ -121,12 +122,12 @@ h2 span{font-size:8.8pt;font-weight:400;color:var(--mut);margin-left:2mm}
       <div class="rt" style="--c:var(--teal)">
         <h3>甄審</h3>
         <div class="n">2,384<small>名額</small></div>
-        <p>不考學科、不考術科。憑最近三年賽會成績，依等級 → 志願序 → 學業成績分發。</p>
+        <p>須以<b>國家代表隊</b>身分參加國際賽會並達名次。不考學科術科，依等級 → 志願序 → 學業成績分發。</p>
       </div>
       <div class="rt" style="--c:var(--gold)">
         <h3>甄試</h3>
         <div class="n">240<small>名額</small></div>
-        <p>考國、英、數共 300 分，依運動等級加 5–50%。團體球類須通過術科檢定。</p>
+        <p><b>全國賽成績走這條。</b>考國、英、數共 300 分，依運動等級加 5–50%。團體球類須過術科檢定。</p>
       </div>
       <div class="rt" style="--c:var(--maroon)">
         <h3>單獨招生</h3>
@@ -145,16 +146,16 @@ h2 span{font-size:8.8pt;font-weight:400;color:var(--mut);margin-left:2mm}
     <h2>你該押哪一條<span>看自己最好的那一張獎狀，對到左欄</span></h2>
     <div class="tree">
       <div class="br" style="--c:var(--teal);--bg:var(--teal-bg)">
-        <div class="q"><b class="h">① 有國際賽會成績</b>世錦賽、亞運（前 6–8 名）；青奧、世運、世大運（前 6）；亞錦賽、世界青少年錦標賽、亞太錦標賽（前 4）</div>
-        <div class="a"><span class="go">主攻 甄審</span><b>不用考試，直接分發。</b>等級越高排越前面，同級才比志願序和學業成績——所以志願表的順序要認真排。同時報單招當備援，但記得甄審一旦錄取就受「一次為限」限制。</div>
+        <div class="q"><b class="h">① 以國家代表隊身分拿到國際賽名次</b>世錦賽、亞運（前 6–8 名）；青奧、世運、世大運（前 6）；亞錦賽、世界青少年錦標賽、亞太錦標賽（前 4）。<b style="color:var(--maroon-d)">三個條件缺一不可：國家代表隊身分＋清單內賽會＋名次達標。</b></div>
+        <div class="a"><span class="go">主攻 甄審</span><b>不用考試，直接分發。</b>等級越高排越前面，同級才比志願序和學業成績——志願表的順序要認真排。名次還要看參賽規模：前二名須 4 國 4 隊、第三名 5 國 5 隊、其餘 6 國 6 隊以上，記得備妥參賽隊數證明。</div>
       </div>
       <div class="br" style="--c:var(--gold);--bg:var(--gold-bg)">
-        <div class="q"><b class="h">② 有全國性成績</b>全國運動會前 8；全民運動會前 8；<b style="color:var(--maroon-d)">全中運前 8</b>；教育部中等學校運動聯賽最優級組前 8</div>
+        <div class="q"><b class="h">② 有全國性成績</b>全國運動會前 8；全民運動會前 8；<b style="color:var(--maroon-d)">全中運前 8</b>；教育部中等學校運動聯賽最優級組前 8。<b style="color:var(--maroon-d)">全國賽不能甄審，只能甄試</b>——這是體育班最多人落點的一格。</div>
         <div class="a"><span class="go">甄試 ＋ 單招 雙押</span>甄試加分：全運第一名 +40%、全中運前二 +20%、全中運三四 +10%、全中運五至八 +5%。<b>加分是加在學科成績上，學科不能放掉。</b>數學考高一數學＋高二數 A、數 B 共同單元。單招名額最多，同時報。</div>
       </div>
       <div class="br" style="--c:var(--maroon);--bg:var(--rose-bg)">
         <div class="q"><b class="h">③ 只有縣市級成績或校隊資歷</b>沒到全國前八，但有正式比賽紀錄與長期訓練</div>
-        <div class="a"><span class="go">主攻 單招</span>各校自訂採認層級與名次門檻，<b>先確認自己的成績單能敲開哪幾扇門</b>——同一張獎狀在 A 校不算、在 B 校算。個人申請當第二條，挑檢定寬鬆的校系。</div>
+        <div class="a"><span class="go">主攻 單招</span>各校自訂採認層級與名次門檻，<b>先確認自己的成績單能敲開哪幾扇門</b>——同一張獎狀在 A 校不算、在 B 校算。第二條路是<b>特殊選才</b>（不採計學測、看運動歷程，11–12 月最早開跑），第三條是個人申請挑檢定寬鬆的校系。</div>
       </div>
       <div class="br" style="--c:var(--rose);--bg:var(--rose-bg)">
         <div class="q"><b class="h">④ 沒有可採認的運動成績</b>或不打算靠運動成績升學</div>
@@ -192,19 +193,17 @@ h2 span{font-size:8.8pt;font-weight:400;color:var(--mut);margin-left:2mm}
   <section>
     <h2>三件事別搞錯</h2>
     <div class="warns">
-      <div class="wn"><b>錄取一次為限</b>甄審甄試升學輔導只能錄取一次；而且錄取後若沒有依規定辦理放棄，就<b>不得再參加後續的大學或四技招生。</b>填志願表前先想清楚順序。</div>
-      <div class="wn"><b>單招錯過就沒了</b>81 校各自公告、各自收件，沒有統一報名系統。<b>寒假前要把目標校清單列好</b>逐校記下報名截止日與術科檢定日。</div>
-      <div class="wn"><b>甄試的加分是加在學科上</b>學科零分，加 50% 還是零分。國、英、數三科各 100 分，數學範圍是<b>高一數學＋高二數 A、數 B 共同單元。</b></div>
+      <div class="wn"><b class="h">錄取一次為限</b>甄審甄試升學輔導只能錄取一次；而且錄取後若沒有依規定辦理放棄，就<b>不得再參加後續的大學或四技招生。</b>填志願表前先想清楚順序。</div>
+      <div class="wn"><b class="h">單招的學科有兩種</b>一種是<b>採計學測</b>（要達檢定標準），一種是<b>學校自辦學科考試</b>。查詢表上「學科考試：無」只表示沒有自辦筆試，<b>不代表不看學測</b>——一定要開各校簡章確認。81 校各自收件，錯過無補救。</div>
+      <div class="wn"><b class="h">甄試的加分是加在學科上</b>學科零分，加 50% 還是零分。國、英、數三科各 100 分，數學範圍是<b>高一數學＋高二數 A、數 B 共同單元。</b></div>
     </div>
   </section>
 
   <div class="foot">
     <div>
-      資料來源：115 學年度運動成績優良學生升學輔導甄審甄試簡章名額彙整表、大專校院單獨招生試務資訊查詢系統、115 學年度大學個人申請招生簡章。<b>各年度日期與名額會變動，選填前務必回查當年度正式簡章。</b>
+      資料來源：115 學年度運動績優甄審甄試簡章名額彙整表、大專校院單獨招生試務資訊查詢系統、115 學年度大學個人申請招生簡章。<b>各年度日期與名額會變動，選填前務必回查當年度正式簡章。</b>
     </div>
-    <div class="qr">
-      <b>完整名額查詢</b>　path-map 升學地圖 → 體育班升學地圖<br>2,493 筆逐筆志願，可依運動種類查
-    </div>
+    <div class="qr"><b>完整名額查詢</b>　path-map 升學地圖 → 體育班升學地圖</div>
   </div>
 </div>
 
