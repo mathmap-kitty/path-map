@@ -2,7 +2,23 @@
 # 只放網站實際會用到的檔案，其餘一律排除。
 
 # 建置流程：程式碼、下載的 331 張甄選會圖檔、中間產物，共約 218 MB
-_build/
+# 寫成 _build/* 而不是 _build/，這樣下面才能個別放行——寫 _build/ 的話 Git
+# 根本不會走進這個資料夾，後面的 ! 規則會失效。
+_build/*
+
+# 例外：體育班升學地圖（sport.html / sport-a4.html）的建置流程與資料來源，
+# 共約 860 KB。這條線只存在本機的話，換電腦或重灌就沒了，所以進 repo。
+!_build/README_sport.md
+!_build/build_sport.py
+!_build/fetch_sport.py
+!_build/run_sport_watch.bat
+!_build/sport_template.html
+!_build/sport_src_quota.json
+!_build/sport_src_single.json
+!_build/sport_src_apply.json
+!_build/sport_notices.json
+# 每週檢核的紀錄與 stdout 不進 repo：每次執行都會變，只會製造雜訊。
+# （sport_watch_log.md、sport_watch_stdout.log 落在上面的 _build/* 裡）
 
 # 資料來源與工作檔（簡章、判斷用試算表、PDF）
 *.xlsx
