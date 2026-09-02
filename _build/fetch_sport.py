@@ -36,6 +36,14 @@ BUILD = Path(__file__).parent
 SRC = BUILD / "sport_src_single.json"
 NOTICES = BUILD / "sport_notices.json"
 LOG = BUILD / "sport_watch_log.md"
+STATE = BUILD / "sport_watch_state.json"
+REPORTS = BUILD / "sport_reports"
+
+# 檢核頻率：各校的單招簡章 12 月中旬才開始陸續公告，9-10 月幾乎不會動，
+# 所以那兩個月每兩週看一次就夠；11 月起進入公告密集期，改成每週。
+# 工作排程固定每週觸發，由這裡決定這一次要不要真的去抓。
+def interval_days(today):
+    return 14 if today.month in (9, 10) else 7
 
 LIST_URL = "https://iss.ntus.edu.tw/open/sexam"
 NOTICE_URL = "https://lulu.ntus.edu.tw/"
@@ -198,7 +206,50 @@ def write_log(lines):
         f.write(body)
 
 
+def due(today):
+    """這一次該不該真的去抓。工作排程每週觸發，9-10 月改成兩週一次。"""
+    if "--force" in sys.argv:
+        return True, None
+    state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {}
+    last = state.get("last_checked")
+    if not last:
+        return True, None
+    gap = (today - datetime.strptime(last, "%Y-%m-%d").date()).days
+    need = interval_days(today)
+    return gap >= need, gap
+
+
+def stamp_state(today, summary):
+    if DRY:
+        return
+    STATE.write_text(json.dumps({
+        "last_checked": today.strftime("%Y-%m-%d"),
+        "cadence": f"{interval_days(today)} 天",
+        "summary": summary,
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def write_report(today, lines, changed):
+    """每次實際檢核都留一份書面統計，有沒有變動都要寫——這樣才知道它有在跑。"""
+    if DRY:
+        return None
+    REPORTS.mkdir(exist_ok=True)
+    f = REPORTS / f"{today.strftime('%Y-%m-%d')}_單招檢核.md"
+    head = [f"# 運動績優單獨招生 檢核報告　{today.strftime('%Y-%m-%d')}", "",
+            f"檢核頻率：目前每 {interval_days(today)} 天一次"
+            f"（9–10 月每兩週，11 月起每週）", "",
+            ("## 有變動，資料已更新" if changed else "## 本次無變動"), ""]
+    f.write_text("\n".join(head + lines) + "\n", encoding="utf-8")
+    return f
+
+
 def main():
+    today = datetime.now().date()
+    ok, gap = due(today)
+    if not ok:
+        print(f"距離上次檢核只有 {gap} 天，未達 {interval_days(today)} 天，本次跳過。")
+        return 0
+
     old = json.loads(SRC.read_text(encoding="utf-8")) if SRC.exists() else []
 
     try:
@@ -215,7 +266,7 @@ def main():
         print(f"筆數異常 {len(old)} → {len(new)}，已中止", file=sys.stderr)
         return 1
 
-    added, gone, changed = diff(old, new)
+    added, gone, changed_rows = diff(old, new)
 
     seen_notices = json.loads(NOTICES.read_text(encoding="utf-8")) if NOTICES.exists() else []
     seen_urls = {n["url"] for n in seen_notices}
@@ -238,19 +289,19 @@ def main():
             lines.append(f"    - {r['sch']}　{r['dep']}　{r['sp']}")
         if len(gone) > 20:
             lines.append(f"    - …另有 {len(gone)-20} 筆")
-    if changed:
-        lines.append(f"- **異動 {len(changed)} 筆**")
+    if changed_rows:
+        lines.append(f"- **異動 {len(changed_rows)} 筆**")
         labels = {"n": "名額", "reg": "報名日期", "exam": "學科考試", "art": "術科檢定", "url": "試務網頁"}
-        for r, deltas in changed[:30]:
+        for r, deltas in changed_rows[:30]:
             for f, o, n in deltas:
                 lines.append(f"    - {r['sch']}　{r['dep']}：{labels[f]} {o or '—'} → {n or '—'}")
-        if len(changed) > 30:
-            lines.append(f"    - …另有 {len(changed)-30} 筆")
+        if len(changed_rows) > 30:
+            lines.append(f"    - …另有 {len(changed_rows)-30} 筆")
     if fresh:
         lines.append(f"- 📣 **升學輔導網有 {len(fresh)} 則新公告**（甄審甄試簡章是 PDF，需手動更新名額表）")
         for n in fresh:
             lines.append(f"    - {n.get('date','')}　[{n['title']}]({n['url']})")
-    if not (added or gone or changed or fresh):
+    if not (added or gone or changed_rows or fresh):
         lines.append("- 無變動。")
 
     print("\n".join(lines))
@@ -259,7 +310,7 @@ def main():
         write_log(lines)
         return 0
 
-    if added or gone or changed:
+    if added or gone or changed_rows:
         SRC.write_text(json.dumps(new, ensure_ascii=False, indent=0), encoding="utf-8")
         result = subprocess.run([sys.executable, str(BUILD / "build_sport.py")],
                                 capture_output=True, text=True, encoding="utf-8")
@@ -272,7 +323,11 @@ def main():
         NOTICES.write_text(json.dumps(seen_notices + fresh, ensure_ascii=False, indent=1),
                            encoding="utf-8")
 
-    write_log(lines)
+    changed = bool(added or gone or changed_rows)
+    report = write_report(today, lines, changed)
+    stamp_state(today, ("有變動：新增 %d、消失 %d、異動 %d" % (len(added), len(gone), len(changed_rows)))
+                if changed else "無變動")
+    write_log(lines + ([f"- 📄 書面統計：`{report.name}`"] if report else []))
     return 0
 
 

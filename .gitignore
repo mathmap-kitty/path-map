@@ -24,6 +24,8 @@ _build/*
 !_build/ppt_acc.json
 !_build/sport_apply_analysis.json
 !_build/sport_apply_core.json
+!_build/make_single_handout.js
+!_build/single_by_talent.json
 # 每週檢核的紀錄與 stdout 不進 repo：每次執行都會變，只會製造雜訊。
 # （sport_watch_log.md、sport_watch_stdout.log 落在上面的 _build/* 裡）
 
@@ -31,6 +33,7 @@ _build/*
 # 網站上的資料以一般體育生為主，這兩份只在本機使用，不公開。
 體育班升學說明_115.docx
 體育班升學說明_115.pptx
+運動績優單獨招生整理_115.docx
 
 # 資料來源與工作檔（簡章、判斷用試算表、PDF）
 *.xlsx
