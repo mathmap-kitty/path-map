@@ -18,6 +18,12 @@ _build/*
 !_build/sport_src_single.json
 !_build/sport_src_apply.json
 !_build/sport_notices.json
+!_build/make_handout.js
+!_build/make_deck.js
+!_build/doc_tiers.json
+!_build/ppt_acc.json
+!_build/sport_apply_analysis.json
+!_build/sport_apply_core.json
 # 每週檢核的紀錄與 stdout 不進 repo：每次執行都會變，只會製造雜訊。
 # （sport_watch_log.md、sport_watch_stdout.log 落在上面的 _build/* 裡）
 
