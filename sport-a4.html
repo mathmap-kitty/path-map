@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>體育班升學決策單｜一張 A4 看完四條路</title>
+<meta name="description" content="體育班四條升學管道的名額、時程與該押哪一條——一張 A4，班會直接發。">
+<meta name="theme-color" content="#8c2740">
+<link rel="icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%238c2740'/%3E%3Ctext x='50' y='74' font-size='58' text-anchor='middle' fill='%23fff' font-family='Microsoft JhengHei,sans-serif' font-weight='700'%3E%E9%81%B8%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --maroon:#8c2740; --maroon-d:#6f1f33; --page:#f7f2ee; --card:#fff;
+  --line:#e7dcd6; --ink:#2b2b2b; --mut:#8a7770;
+  --rose-tag:#f0dde3; --rose-bg:#f9eef1; --teal:#1f6f78; --teal-bg:#e4eff0;
+  --gold:#8a5d08; --gold-bg:#f6efdf; --rose:#c96f88;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e2dd;color:var(--ink);
+  font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  line-height:1.5;font-size:11pt}
+
+.toolbar{max-width:210mm;margin:0 auto;padding:14px 8mm;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.toolbar .t{font-weight:800;color:var(--maroon-d);margin-right:auto}
+.toolbar button,.toolbar a{font:inherit;font-size:14px;font-weight:700;border-radius:999px;
+  padding:7px 16px;border:1px solid var(--maroon);background:var(--maroon);color:#fff;cursor:pointer;text-decoration:none}
+.toolbar a.ghost{background:#fff;color:var(--maroon)}
+
+.sheet{
+  width:210mm;min-height:297mm;margin:0 auto 24px;padding:11mm 12mm 9mm;
+  background:#fff;box-shadow:0 6px 26px rgba(80,40,30,.22);
+  display:flex;flex-direction:column;gap:3.6mm;
+}
+h1{margin:0;font-size:19pt;color:var(--maroon);letter-spacing:.5px;line-height:1.25}
+.sub{margin:1mm 0 0;font-size:9.6pt;color:var(--mut)}
+.hd{display:flex;justify-content:space-between;align-items:flex-end;gap:8mm;
+  border-bottom:2.5pt solid var(--maroon);padding-bottom:2.6mm}
+.hd .who{font-size:9pt;color:var(--mut);text-align:right;white-space:nowrap;line-height:1.7}
+.hd .who b{display:block;font-size:11pt;color:var(--maroon-d)}
+
+h2{margin:0 0 2mm;font-size:12pt;color:var(--maroon-d);
+  border-left:4pt solid var(--maroon);padding-left:2.6mm;line-height:1.3}
+h2 span{font-size:8.8pt;font-weight:400;color:var(--mut);margin-left:2mm}
+
+/* 四條路 */
+.routes{display:grid;grid-template-columns:repeat(4,1fr);gap:2.6mm}
+.rt{border:.8pt solid var(--line);border-top:3pt solid var(--c);border-radius:2mm;padding:2.6mm 3mm;background:#fff}
+.rt h3{margin:0;font-size:10.4pt;color:var(--c)}
+.rt .n{font-size:17pt;font-weight:900;line-height:1.15;color:var(--c);font-variant-numeric:tabular-nums}
+.rt .n small{font-size:8pt;font-weight:400;color:var(--mut);margin-left:1mm}
+.rt p{margin:1.4mm 0 0;font-size:8.7pt;line-height:1.45;color:#4a4a4a}
+
+/* 決策樹 */
+.tree{display:flex;flex-direction:column;gap:2mm}
+.br{display:grid;grid-template-columns:52mm 1fr;gap:0;border:.8pt solid var(--line);border-radius:2mm;overflow:hidden}
+.br .q{background:var(--bg);padding:2.6mm 3mm;font-size:9.2pt;line-height:1.42;border-right:.8pt solid var(--line)}
+.br .q b.h{display:block;font-size:10pt;color:var(--c);margin-bottom:.8mm}
+.br .a{padding:2.6mm 3mm;font-size:9.2pt;line-height:1.5}
+.br .a b{color:var(--maroon-d)}
+.go{display:inline-block;background:var(--c);color:#fff;border-radius:999px;
+  padding:.3mm 2.4mm;font-size:8.6pt;font-weight:700;margin-right:1.6mm}
+
+/* 時間軸 */
+.tl{display:grid;grid-template-columns:repeat(6,1fr);gap:1.6mm}
+.tl .m{border:.8pt solid var(--line);border-radius:2mm;overflow:hidden}
+.tl .m .top{background:var(--rose-bg);color:var(--maroon-d);font-weight:800;font-size:8.8pt;
+  padding:1.4mm 2mm;text-align:center;border-bottom:.8pt solid var(--line)}
+.tl .m ul{margin:0;padding:1.8mm 2mm 2mm 5mm;font-size:8.3pt;line-height:1.4}
+.tl .m li{margin-bottom:1mm}
+.tl .m li:last-child{margin-bottom:0}
+.tl .m li b{color:var(--maroon-d)}
+
+/* 提醒 */
+.warns{display:grid;grid-template-columns:repeat(3,1fr);gap:2.6mm}
+.wn{border:.8pt solid #e0b9a6;border-left:3pt solid var(--maroon);background:#fff8f2;
+  border-radius:2mm;padding:2.4mm 3mm;font-size:8.9pt;line-height:1.45}
+.wn b{display:block;color:var(--maroon-d);font-size:9.6pt;margin-bottom:.8mm}
+
+.foot{margin-top:auto;border-top:.8pt dashed var(--line);padding-top:1.8mm;
+  font-size:7.2pt;color:var(--mut);line-height:1.5;display:flex;gap:4mm;justify-content:space-between;align-items:flex-end}
+.foot .qr{text-align:right;white-space:nowrap}
+.foot b{color:var(--maroon-d)}
+
+@media print{
+  @page{size:A4;margin:0}
+  body{background:#fff}
+  .toolbar{display:none}
+  .sheet{width:auto;min-height:auto;margin:0;box-shadow:none;padding:8mm 10mm 6mm}
+  /* 內容剛好比一頁多一點點，整體縮 6% 讓它收在同一張紙上 */
+  .sheet{zoom:.94}
+}
+@media screen and (max-width:820px){
+  .sheet{width:auto;min-height:auto;padding:6mm}
+  .routes,.warns{grid-template-columns:1fr 1fr}
+  .tl{grid-template-columns:1fr 1fr 1fr}
+  .br{grid-template-columns:1fr}
+  .br .q{border-right:0;border-bottom:.8pt solid var(--line)}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span class="t">🖨️ 這頁是為列印設計的：按「列印」→ 目的地選「另存為 PDF」，紙張 A4、邊界「無」。</span>
+  <button onclick="window.print()">列印 / 存成 PDF</button>
+  <a class="ghost" href="sport.html">查完整名額表</a>
+</div>
+
+<div class="sheet">
+
+  <div class="hd">
+    <div>
+      <h1>體育班升學決策單</h1>
+      <p class="sub">四條路怎麼選、什麼時候動——先看你最好的那張獎狀落在哪一層。</p>
+    </div>
+    <div class="who"><b>班級／姓名</b>＿＿＿＿＿＿＿＿＿＿<br>主要運動種類 ＿＿＿＿＿＿＿</div>
+  </div>
+
+  <section>
+    <h2>四條路的名額<span>115 學年度，合計 107 所大專校院、7,401 個名額</span></h2>
+    <div class="routes">
+      <div class="rt" style="--c:var(--teal)">
+        <h3>甄審</h3>
+        <div class="n">2,384<small>名額</small></div>
+        <p>不考學科、不考術科。憑最近三年賽會成績，依等級 → 志願序 → 學業成績分發。</p>
+      </div>
+      <div class="rt" style="--c:var(--gold)">
+        <h3>甄試</h3>
+        <div class="n">240<small>名額</small></div>
+        <p>考國、英、數共 300 分，依運動等級加 5–50%。團體球類須通過術科檢定。</p>
+      </div>
+      <div class="rt" style="--c:var(--maroon)">
+        <h3>單獨招生</h3>
+        <div class="n">3,263<small>名額</small></div>
+        <p>名額最多。81 校各自公告簡章、各自收件，最早 12 月中旬就開始報名。</p>
+      </div>
+      <div class="rt" style="--c:var(--rose)">
+        <h3>個人申請</h3>
+        <div class="n">1,514<small>名額</small></div>
+        <p>需學測。其中 17 系不設檢定、26 系學測佔 0%，勝負在備審與面試。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>你該押哪一條<span>看自己最好的那一張獎狀，對到左欄</span></h2>
+    <div class="tree">
+      <div class="br" style="--c:var(--teal);--bg:var(--teal-bg)">
+        <div class="q"><b class="h">① 有國際賽會成績</b>世錦賽、亞運（前 6–8 名）；青奧、世運、世大運（前 6）；亞錦賽、世界青少年錦標賽、亞太錦標賽（前 4）</div>
+        <div class="a"><span class="go">主攻 甄審</span><b>不用考試，直接分發。</b>等級越高排越前面，同級才比志願序和學業成績——所以志願表的順序要認真排。同時報單招當備援，但記得甄審一旦錄取就受「一次為限」限制。</div>
+      </div>
+      <div class="br" style="--c:var(--gold);--bg:var(--gold-bg)">
+        <div class="q"><b class="h">② 有全國性成績</b>全國運動會前 8；全民運動會前 8；<b style="color:var(--maroon-d)">全中運前 8</b>；教育部中等學校運動聯賽最優級組前 8</div>
+        <div class="a"><span class="go">甄試 ＋ 單招 雙押</span>甄試加分：全運第一名 +40%、全中運前二 +20%、全中運三四 +10%、全中運五至八 +5%。<b>加分是加在學科成績上，學科不能放掉。</b>數學考高一數學＋高二數 A、數 B 共同單元。單招名額最多，同時報。</div>
+      </div>
+      <div class="br" style="--c:var(--maroon);--bg:var(--rose-bg)">
+        <div class="q"><b class="h">③ 只有縣市級成績或校隊資歷</b>沒到全國前八，但有正式比賽紀錄與長期訓練</div>
+        <div class="a"><span class="go">主攻 單招</span>各校自訂採認層級與名次門檻，<b>先確認自己的成績單能敲開哪幾扇門</b>——同一張獎狀在 A 校不算、在 B 校算。個人申請當第二條，挑檢定寬鬆的校系。</div>
+      </div>
+      <div class="br" style="--c:var(--rose);--bg:var(--rose-bg)">
+        <div class="q"><b class="h">④ 沒有可採認的運動成績</b>或不打算靠運動成績升學</div>
+        <div class="a"><span class="go">走 個人申請</span>從 100 個門檻寬鬆的校系裡挑：<b>17 系零檢定、26 系學測完全不佔分</b>，六到九成的分數由備審資料與面試決定——這是能靠準備補回來的部分。備援是分發入學。</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>一年的關卡順序<span>日期為 115 學年度實際時程，每年月份大致相同</span></h2>
+    <div class="tl">
+      <div class="m"><div class="top">10–11 月</div><ul>
+        <li><b>術科考試報名</b><br>大學術科考試體育組，學校集體報名</li></ul></div>
+      <div class="m"><div class="top">12–1 月</div><ul>
+        <li><b>單招陸續開跑</b><br>最早 12 月中旬</li>
+        <li>學測</li>
+        <li>術科考試（國體大）</li></ul></div>
+      <div class="m"><div class="top">2–3 月</div><ul>
+        <li>單招報名續開</li>
+        <li><b>3/27–3/28</b><br>多數單招術科檢定</li>
+        <li>個申一階篩選</li></ul></div>
+      <div class="m"><div class="top">4–5 月</div><ul>
+        <li><b>4/13–5/4</b><br>甄審甄試報名<br>（學校統一辦理）</li>
+        <li>個申二階面試</li></ul></div>
+      <div class="m"><div class="top">6 月</div><ul>
+        <li><b>6/6</b> 甄試學科</li>
+        <li><b>6/7</b> 術科檢定</li>
+        <li><b>6/22</b> 甄審甄試放榜</li></ul></div>
+      <div class="m"><div class="top">7–9 月</div><ul>
+        <li>分科測驗與分發</li>
+        <li><b>8/20–9/7</b><br>第二次甄審報名<br>（暑假才拿到成績的人）</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>三件事別搞錯</h2>
+    <div class="warns">
+      <div class="wn"><b>錄取一次為限</b>甄審甄試升學輔導只能錄取一次；而且錄取後若沒有依規定辦理放棄，就<b>不得再參加後續的大學或四技招生。</b>填志願表前先想清楚順序。</div>
+      <div class="wn"><b>單招錯過就沒了</b>81 校各自公告、各自收件，沒有統一報名系統。<b>寒假前要把目標校清單列好</b>逐校記下報名截止日與術科檢定日。</div>
+      <div class="wn"><b>甄試的加分是加在學科上</b>學科零分，加 50% 還是零分。國、英、數三科各 100 分，數學範圍是<b>高一數學＋高二數 A、數 B 共同單元。</b></div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <div>
+      資料來源：115 學年度運動成績優良學生升學輔導甄審甄試簡章名額彙整表、大專校院單獨招生試務資訊查詢系統、115 學年度大學個人申請招生簡章。<b>各年度日期與名額會變動，選填前務必回查當年度正式簡章。</b>
+    </div>
+    <div class="qr">
+      <b>完整名額查詢</b>　path-map 升學地圖 → 體育班升學地圖<br>2,493 筆逐筆志願，可依運動種類查
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
