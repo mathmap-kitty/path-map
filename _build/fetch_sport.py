@@ -36,6 +36,7 @@ BUILD = Path(__file__).parent
 SRC = BUILD / "sport_src_single.json"
 NOTICES = BUILD / "sport_notices.json"
 LOG = BUILD / "sport_watch_log.md"
+YEARS = BUILD / "sport_years.json"
 STATE = BUILD / "sport_watch_state.json"
 REPORTS = BUILD / "sport_reports"
 
@@ -194,6 +195,36 @@ def notices():
     return out
 
 
+def reg_year(record):
+    """一筆資料的學年度。報名日期橫跨兩個民國年（例如 115.12.30-116.1.21），
+    學年度是後面那個，所以取最大值。"""
+    ys = [int(y) for y in re.findall("(1[0-9]{2})[./年-]", record.get("reg") or "")]
+    return max(ys) if ys else None
+
+
+def dataset_year(records):
+    ys = [y for y in (reg_year(r) for r in records) if y]
+    return max(ys) if ys else None
+
+
+def rollover(old, new):
+    """判斷是不是新學年度開跑，而不是抓取出問題。
+
+    查詢系統一次只放一個學年度。新年度一開始，站上就只剩剛公告的那幾所學校，
+    筆數會從幾百掉到個位數——長得跟「被擋」或「網站改版」一模一樣。
+
+    分辨的關鍵是重疊率：抓取異常時撈回來的還是舊資料（重疊高），
+    年度輪替則是一批全新的校系（重疊近乎零）。
+    """
+    if not old or not new:
+        return False
+    keys_old = {key(r) for r in old}
+    overlap = sum(1 for r in new if key(r) in keys_old) / len(new)
+    shrank = len(new) < len(old) * 0.7
+    year_up = (dataset_year(new) or 0) > (dataset_year(old) or 0)
+    return year_up or (shrank and overlap < 0.2)
+
+
 def write_log(lines):
     stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
     body = f"\n## {stamp}\n\n" + "\n".join(lines) + "\n"
@@ -259,25 +290,52 @@ def main():
         print(f"抓取失敗：{e}", file=sys.stderr)
         return 1
 
-    # 一次抓到的筆數掉超過三成，多半是網站改版或被擋，不是真的少了那麼多校系。
-    if old and len(new) < len(old) * 0.7:
+    years = json.loads(YEARS.read_text(encoding="utf-8")) if YEARS.exists() else {}
+    stored_year = years.get("single")
+    is_rollover = rollover(old, new)
+
+    # 筆數掉超過三成通常代表網站改版或被擋。但新學年度開跑時也會這樣，
+    # 所以先問過 rollover() 再決定要不要中止。
+    if old and len(new) < len(old) * 0.7 and not is_rollover:
         write_log([f"- ⚠️ **筆數異常**：抓到 {len(new)} 筆，上次 {len(old)} 筆，落差過大。",
                    "- 已中止更新以免洗掉正確資料，請人工確認查詢系統是否改版。"])
         print(f"筆數異常 {len(old)} → {len(new)}，已中止", file=sys.stderr)
         return 1
 
-    added, gone, changed_rows = diff(old, new)
+    if is_rollover:
+        # 新年度直接取代舊資料，統計歸零重新累計——比對舊年度的增減沒有意義。
+        added, gone, changed_rows = new, [], []
+        new_year = dataset_year(new) or (int(stored_year) + 1 if stored_year else None)
+        if new_year:
+            years["single"] = str(new_year)
+            YEARS.write_text(json.dumps(years, ensure_ascii=False, indent=1), encoding="utf-8")
+    else:
+        added, gone, changed_rows = diff(old, new)
 
     seen_notices = json.loads(NOTICES.read_text(encoding="utf-8")) if NOTICES.exists() else []
     seen_urls = {n["url"] for n in seen_notices}
     fresh = [n for n in notices() if n["url"] not in seen_urls]
 
-    lines = [f"- 查詢系統 {len(new)} 筆、名額合計 {sum(r['n'] for r in new)}"
-             f"（上次 {len(old)} 筆）",
-             "- 學科要求分布：" + exam_digest(new)]
+    cur_year = years.get("single") or "—"
+    lines = []
+    if is_rollover:
+        lines += [f"- 🎉 **{cur_year} 學年度單招開始公告了**"
+                  f"（上一年度 {stored_year or '—'} 的 {len(old)} 筆已整批換掉）",
+                  f"- 目前累計 **{len(new)} 個校系、{sum(r['n'] for r in new)} 個名額**，"
+                  "之後各校陸續公告會繼續往上加。"]
+    else:
+        lines += [f"- {cur_year} 學年度累計 **{len(new)} 個校系、"
+                  f"{sum(r['n'] for r in new)} 個名額**"
+                  f"（上次 {len(old)} 個校系、{sum(r['n'] for r in old)} 個名額）"]
+    lines.append("- 學科要求分布：" + exam_digest(new))
+
+    # 個申簡章每年 11 月初公告，時間到了就提醒——那份要人工更新，程式抓不到。
+    if datetime.now().month >= 11 and years.get("apply") == stored_year:
+        lines.append(f"- 📌 **提醒**：個人申請簡章約於 11 月初公告，目前站上個申資料仍標"
+                     f" {years.get('apply')} 學年度，該更新 `sport_src_apply.json` 了。")
 
     if added:
-        lines.append(f"- **新增 {len(added)} 筆**")
+        lines.append(f"- **{'本年度目前已公告' if is_rollover else '新增'} {len(added)} 筆**")
         for r in added[:40]:
             lines.append(f"    - {r['sch']}　{r['dep']}　{r['sp']}　{r['n']} 名　"
                          f"報名 {r['reg'] or '—'}　學科 {r['exam'] or '無'}")
