@@ -42,10 +42,26 @@ def load(name):
     return json.loads((BUILD / name).read_text(encoding="utf-8"))
 
 
+def single_year(records):
+    """從報名日期推算單招資料是哪一學年度。
+
+    115 學年度的單招報名橫跨 114 年 12 月到 115 年 5 月，所以出現過的民國年
+    取最大的那個就是學年度。推不出來時回 None，由呼叫端沿用設定檔的值。
+    """
+    years = [int(m) for r in records
+             for m in re.findall(r"\b(1\d{2})[.\-/年]", r.get("reg") or "")]
+    return str(max(years)) if years else None
+
+
 def main():
     quota = load("sport_src_quota.json")
     single = load("sport_src_single.json")
     apply_ = load("sport_src_apply.json")
+
+    # 三個來源各自更新，所以年度也各自標。單招從報名日期推算，推不出來就沿用設定檔。
+    years = load("sport_years.json")
+    years = {k: v for k, v in years.items() if not k.startswith("_")}
+    years["single"] = single_year(single) or years.get("single")
 
     sch, dep, sp, memo, url, sex, reg, ex, art = (Table() for _ in range(9))
 
@@ -92,6 +108,7 @@ def main():
               "url": url.items, "sex": sex.items, "reg": reg.items,
               "ex": ex.items, "art": art.items},
         "built": datetime.now().strftime("%Y-%m-%d"),
+        "years": years,
     }
 
     data = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
@@ -104,6 +121,7 @@ def main():
     OUT.write_text(template.replace("__DATA__", data), encoding="utf-8")
 
     print(f"wrote {OUT}  {OUT.stat().st_size/1e6:.2f} MB")
+    print(f"  年度標示：甄審甄試 {years['quota']} / 單招 {years['single']} / 個申 {years['apply']}")
     print(f"  甄審 {sum(r['n'] for r in quota if r['rt']=='甄審')} 名額 / "
           f"甄試 {sum(r['n'] for r in quota if r['rt']=='甄試')} 名額 / "
           f"單招 {sum(r['n'] for r in single)} 名額 / "

@@ -71,6 +71,14 @@ a:focus-visible,summary:focus-visible,button:focus-visible,select:focus-visible,
    體育班頁面專屬樣式（疊在標準之上）
    ============================================================ */
 .lede{margin:6px 0 0;font-size:14.5px;color:var(--mut)}
+.yr{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:var(--radius-pill);
+  background:var(--rose-tag);color:var(--maroon-d);vertical-align:2px;margin-left:8px;white-space:nowrap}
+.yr.new{background:#e0eef0;color:#155a62}
+.yearbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:14px 0 0;padding:11px 16px;
+  border:1px dashed var(--line);border-radius:var(--radius-m);background:var(--card);font-size:13.5px}
+.yearbar b{color:var(--maroon-d)}
+.yearbar span.item{color:var(--mut)}
+.yearbar span.item b{margin-left:4px}
 .h2note{font-size:12.5px;color:var(--mut);margin:0 0 16px}
 
 /* 下一站看板 */
@@ -206,12 +214,20 @@ b.k{display:inline-block;background:var(--rose-tag);color:var(--maroon-d);border
     <div class="sub" id="boardSub"></div>
   </div>
 
+  <div class="yearbar" id="yearbar">
+    <b>目前顯示的資料年度</b>
+    <span class="item">運動績優甄審甄試<b id="yr-q">—</b></span>
+    <span class="item">各校單獨招生<b id="yr-s">—</b></span>
+    <span class="item">個人申請<b id="yr-a">—</b></span>
+    <span class="item" style="flex:1;min-width:200px">三個來源公告時間不同，會出現一份已換年度、另兩份還是舊年度的狀態，所以分開標。</span>
+  </div>
+
   <section id="routes">
     <h2>🛣️ 四條路，名額差距就是策略順序</h2>
     <p class="h2note">個人申請的名額最少、學科要求最高，卻是最多人熟悉的一條。以名額論，甄審與單招才是主力。</p>
     <div class="routes">
       <div class="route" style="--rc:var(--teal)">
-        <h3>運動績優甄審</h3>
+        <h3>運動績優甄審<span class="yr" data-yr="quota">—</span></h3>
         <p class="big" id="n-zs">—<small>名額</small></p>
         <p>不考學科、不考術科，但門檻卡在資格：須以<b>國家代表隊</b>身分參加國際賽會並達規定名次。<b>全國賽成績走不了這條</b>。名額多，是因為一般大學的熱門科系也在名單裡。</p>
         <dl><dt>報名</dt><dd>4 月中～5 月初，由就讀學校統一辦理</dd>
@@ -219,7 +235,7 @@ b.k{display:inline-block;background:var(--rose-tag);color:var(--maroon-d);border
             <dt>審查費</dt><dd>500 元</dd></dl>
       </div>
       <div class="route" style="--rc:var(--gold)">
-        <h3>運動績優甄試</h3>
+        <h3>運動績優甄試<span class="yr" data-yr="quota">—</span></h3>
         <p class="big" id="n-zt">—<small>名額</small></p>
         <p><b>全國賽成績走的就是這條</b>——全運會、全中運、中等學校運動聯賽前八名都在採認範圍。考國文、數學、英文共 300 分，再依運動等級加分 5%–50%；團體球類項目另須通過術科檢定。</p>
         <dl><dt>學科</dt><dd>6 月上旬，國立臺灣體育運動大學</dd>
@@ -227,7 +243,7 @@ b.k{display:inline-block;background:var(--rose-tag);color:var(--maroon-d);border
             <dt>同分序</dt><dd>國文 → 英文 → 數學</dd></dl>
       </div>
       <div class="route" style="--rc:var(--maroon)">
-        <h3>各校運動績優單獨招生</h3>
+        <h3>各校運動績優單獨招生<span class="yr" data-yr="single">—</span></h3>
         <p class="big" id="n-sn">—<small>名額</small></p>
         <p>名額最多的一條，各校自行公告簡章、自行收件，沒有統一報名系統。報名壓在高三上學期末到寒假，術科檢定多在三月下旬。</p>
         <dl><dt>報名</dt><dd>12 月中旬～3 月初（逐校不同）</dd>
@@ -235,7 +251,7 @@ b.k{display:inline-block;background:var(--rose-tag);color:var(--maroon-d);border
             <dt>風險</dt><dd>錯過單校期程無法補救</dd></dl>
       </div>
       <div class="route" style="--rc:var(--rose)">
-        <h3>大學個人申請</h3>
+        <h3>大學個人申請<span class="yr" data-yr="apply">—</span></h3>
         <p class="big" id="n-an">—<small>名額</small></p>
         <p>從全部 2,206 個校系中篩出體育班打得到的落點。<b>其中 15 系是青年儲蓄帳戶組、2 系是公費生，應屆生填不了</b>；實際可填 83 系、1,495 個名額，其中 17 系不設檢定、11 系學測完全不佔甄選總成績。</p>
         <dl><dt>學測</dt><dd>高三上寒假</dd>
@@ -247,7 +263,7 @@ b.k{display:inline-block;background:var(--rose-tag);color:var(--maroon-d);border
   </section>
 
   <section id="time">
-    <h2>📅 一年份的關卡順序</h2>
+    <h2>📅 一年份的關卡順序<span class="yr" data-yr="quota">—</span></h2>
     <p class="h2note">日期為 115 學年度實際時程；116 學年度會微調，但先後順序每年一樣。單招最早、個申其次、甄審甄試最晚——這個順序決定學生該先押哪一邊。</p>
     <div class="tl">
       <div class="tl-row"><div class="tl-when">10/27–11/10</div><div class="tl-what"><span class="tag">個申</span>大學術科考試報名（體育組），由學校集體報名</div></div>
@@ -265,7 +281,7 @@ b.k{display:inline-block;background:var(--rose-tag);color:var(--maroon-d);border
   </section>
 
   <section id="find">
-    <h2>🔍 查名額</h2>
+    <h2>🔍 查名額<span class="yr" id="yr-tab">—</span></h2>
     <p class="h2note">前兩張表是跨管道對照，後三張是逐筆資料。點「細節」看學校備註、報名日期與各校試務網頁。</p>
     <div class="panel">
       <div class="tabs" role="tablist">
@@ -389,7 +405,7 @@ b.k{display:inline-block;background:var(--rose-tag);color:var(--maroon-d);border
     </div>
   </section>
 
-  <p class="stamp">資料來源：中等以上學校運動績優學生升學輔導網《115 學年度高級中等以上學校運動成績優良學生升學輔導甄審、甄試簡章》（教育部 115.1.27 備查）名額彙整表、大專校院單獨招生試務資訊查詢系統（各校自行填報）、115 學年度大學個人申請招生簡章校系分則。單招資訊由各校自行填報，各項考試日期與內容仍以各校正式簡章為準。資料更新時間：<b id="built">—</b>。</p>
+  <p class="stamp">資料來源：中等以上學校運動績優學生升學輔導網《<b id="src-q">—</b>學年度高級中等以上學校運動成績優良學生升學輔導甄審、甄試簡章》名額彙整表、大專校院單獨招生試務資訊查詢系統（各校自行填報，<b id="src-s">—</b>學年度）、<b id="src-a">—</b>學年度大學個人申請招生簡章校系分則。單招資訊由各校自行填報，各項考試日期與內容仍以各校正式簡章為準。資料更新時間：<b id="built">—</b>。</p>
 </div>
 
 <script type="application/json" id="payload">__DATA__</script>
@@ -414,6 +430,35 @@ document.getElementById("n-sn").innerHTML = sum(D.S,x=>x.n).toLocaleString()+"<s
 document.getElementById("n-an").innerHTML = sum(D.A,x=>x.quota||0).toLocaleString()+"<small>名額 · "+D.A.length+" 校系</small>";
 ["SP","SC","Q","S","A"].forEach(k => document.getElementById("n"+k).textContent = D[k].length);
 document.getElementById("built").textContent = D.built || "—";
+
+/* ── 年度標示 ── */
+const YR = D.years || {};
+const yrText = (k) => YR[k] ? YR[k] + " 學年度" : "年度未標示";
+document.getElementById("yr-q").textContent = yrText("quota");
+document.getElementById("yr-s").textContent = yrText("single");
+document.getElementById("yr-a").textContent = yrText("apply");
+["q","s","a"].forEach((k, i) => {
+  const el = document.getElementById("src-" + k);
+  if (el) el.textContent = YR[["quota","single","apply"][i]] || "—";
+});
+// 三份年度不一致時，把最新的那一份標成不同顏色，一眼看得出哪一份已經換年度
+const newest = Object.values(YR).sort().slice(-1)[0];
+document.querySelectorAll("[data-yr]").forEach((el) => {
+  const k = el.dataset.yr;
+  el.textContent = yrText(k);
+  if (YR[k] === newest && new Set(Object.values(YR)).size > 1) el.classList.add("new");
+});
+// 查名額區的年度隨分頁切換
+const TAB_SOURCE = { SP: "quota", SC: "quota", Q: "quota", S: "single", A: "apply" };
+function paintTabYear(){
+  const el = document.getElementById("yr-tab");
+  if(tab === "SP" || tab === "SC"){
+    el.textContent = `甄審甄試 ${YR.quota || "?"}／單招 ${YR.single || "?"}／個申 ${YR.apply || "?"} 學年度`;
+  } else {
+    el.textContent = yrText(TAB_SOURCE[tab]);
+  }
+  el.classList.toggle("new", YR[TAB_SOURCE[tab]] === newest && new Set(Object.values(YR)).size > 1);
+}
 
 /* ── 下一站倒數 ── */
 (function(){
@@ -545,6 +590,7 @@ function render(){
   m.hidden = r.length <= limit;
   m.textContent = `顯示更多（還有 ${r.length-limit} 筆）`;
 }
+function paintTabYearSafe(){ try{ paintTabYear(); }catch(e){} }
 function paintChips(){
   document.getElementById("chips").innerHTML =
     CHIPS[tab].map(c=>`<button class="chip" data-v="${c[1]}" aria-pressed="false">${c[2]}</button>`).join("");
@@ -554,7 +600,7 @@ D.sports.forEach(s => { const o=document.createElement("option"); o.value=s; o.t
 document.querySelectorAll("button.tab").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll("button.tab").forEach(x=>x.setAttribute("aria-selected", x===b));
   tab = b.dataset.t; chips.clear(); open.clear(); sortKey=null; sortDir=-1; limit=200;
-  paintChips(); render();
+  paintChips(); paintTabYearSafe(); render();
 }));
 document.getElementById("chips").addEventListener("click", e => {
   const b = e.target.closest("button.chip"); if(!b) return;
@@ -584,6 +630,7 @@ document.getElementById("jumpsel").addEventListener("change", e => {
   e.target.value = "";
 });
 paintChips();
+paintTabYearSafe();
 render();
 </script>
 </body>
