@@ -9,6 +9,7 @@ _build/*
 # 例外：體育班升學地圖（sport.html / sport-a4.html）的建置流程與資料來源，
 # 共約 860 KB。這條線只存在本機的話，換電腦或重灌就沒了，所以進 repo。
 !_build/README_sport.md
+!_build/README_index.md
 !_build/build_sport.py
 !_build/fetch_sport.py
 !_build/run_sport_watch.bat
