@@ -206,6 +206,56 @@ ol.route::before{
 .grade ul{margin:0; padding-left:20px;}
 .grade li{margin:5px 0;}
 
+/* ── 學習歷程：分組小標 ── */
+.pgroup{display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin:30px 0 12px;
+  font-size:16.5px; font-weight:900; color:var(--maroon-d);}
+.pgroup i{flex:none; width:23px; height:23px; border-radius:50%; background:var(--maroon); color:#fff;
+  font-style:normal; font-size:12.5px; font-weight:900; display:flex; align-items:center; justify-content:center;}
+.pgroup small{font-weight:600; font-size:12.5px; color:var(--mut);}
+
+/* ── 迷思對照 ── */
+ul.myth{margin:2px 0 0; padding:0; list-style:none;}
+ul.myth li{border-top:1px dashed var(--line); padding:11px 0;}
+ul.myth li:first-child{border-top:none; padding-top:4px;}
+ul.myth p{margin:0;}
+ul.myth .m{color:var(--mut); font-size:13.5px;}
+ul.myth .m::before{content:"迷思"; display:inline-block; vertical-align:middle; margin-right:8px;
+  background:var(--rose-tag); color:var(--maroon-d); border-radius:var(--radius-pill);
+  padding:1px 9px; font-size:11.5px; font-weight:800;}
+ul.myth .r{margin-top:5px; font-size:14px;}
+ul.myth .r b{color:var(--maroon-d);}
+.quote{display:block; margin:6px 0; padding:8px 12px; background:var(--rose-bg);
+  border-radius:var(--radius-s); font-size:13.5px; color:var(--maroon-d);}
+
+/* ── AI 界線 ── */
+.warnbox{background:#fdf2ef; border:1px solid #e8c3b6; border-left:5px solid var(--warn);
+  border-radius:var(--radius-m); padding:14px 16px; margin:14px 0 0; font-size:14px;}
+.warnbox h4{margin:0 0 8px; font-size:15.5px; font-weight:900; color:var(--warn);}
+.warnbox p{margin:0;}
+.warnbox .two{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;}
+.warnbox .two div{flex:1 1 230px; background:#fff; border:1px solid var(--line);
+  border-radius:var(--radius-s); padding:10px 13px;}
+.warnbox .two b{display:block; margin-bottom:5px; font-size:13.5px;}
+.warnbox .two .yes b{color:var(--ok);}
+.warnbox .two .no b{color:var(--warn);}
+.warnbox .two ul{margin:0; padding-left:18px; font-size:13.5px;}
+.warnbox .two li{margin:3px 0;}
+
+/* ── 送出前檢核表 ── */
+.check{background:var(--card); border:1px solid var(--line); border-radius:var(--radius-m);
+  padding:6px 16px 12px; box-shadow:var(--shadow-card);}
+.check label{display:flex; gap:11px; align-items:flex-start; padding:11px 0;
+  border-top:1px dashed var(--line); font-size:14px; cursor:pointer;}
+.check label:first-of-type{border-top:none;}
+.check input{flex:none; margin:3px 0 0; width:17px; height:17px; accent-color:var(--maroon); cursor:pointer;}
+.check input:checked+span{color:var(--mut); text-decoration:line-through;}
+.check .foot{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+  margin-top:12px; padding-top:10px; border-top:1px solid var(--line); font-size:12.5px; color:var(--mut);}
+.check .foot b{color:var(--maroon); font-variant-numeric:tabular-nums;}
+.check .foot button{background:none; border:1px solid var(--line); color:var(--mut);
+  border-radius:var(--radius-pill); padding:3px 12px; font-size:12px; font-family:inherit; cursor:pointer;}
+.check .foot button:hover{border-color:var(--maroon); color:var(--maroon);}
+
 /* ── 官方連結 ── */
 ul.links{list-style:none; margin:0; padding:0;}
 ul.links li{border-bottom:1px solid var(--line); padding:11px 2px; font-size:14.5px; display:flex; justify-content:space-between; gap:12px; align-items:baseline;}
@@ -276,9 +326,11 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
       <li class="station" data-date="2026-08-04"><div class="date">2026/8/4</div><div class="name">116 考試簡章公告</div><div class="note">各項報名與考試日期在此最終確認——本頁日期已依簡章核對。</div></li>
       <li class="station enroll" data-date="2026-08-31" data-end="2026-09-03"><div class="date">2026/8/31–9/3</div><div class="name">英聽一　校內報名</div><div class="note">要拚繁星或個申有英聽門檻的校系，第一次就去考。校內收件早於全國期程，跟緊<b>註冊組</b>公告。</div></li>
       <li class="station" data-date="2026-09-03" data-end="2026-09-10"><div class="date">2026/9/3–9/10</div><div class="name">英聽一　報名</div><div class="note">大考中心受理期間；在校生由學校集體報名，校內收件已於 9/3 前截止。</div></li>
+      <li class="station enroll" data-date="2026-09-18"><div class="date">2026/9/18（五）</div><div class="name">勾選　114 學年度課程成果與多元表現</div><div class="note">班會課進行。這是把高二那年的成果送進中央資料庫的最後一次機會——沒勾到的，個申時就不存在。</div></li>
       <li class="station" data-date="2026-10-13"><div class="date">2026/10/13</div><div class="name">英聽一　應考資訊查詢・公布試場分配表</div></li>
       <li class="station" data-date="2026-10-17"><div class="date">2026/10/17（六）</div><div class="name">英聽　第一次考試</div></li>
       <li class="station enroll" data-date="2026-10-21" data-end="2026-10-30"><div class="date">2026/10/21–10/30</div><div class="name">學測・術科・英聽二　校內報名</div><div class="note">由學校集體報名，跟緊<b>註冊組</b>公告；學測選考科目此時定案。</div></li>
+      <li class="station enroll" data-date="2026-10-21" data-end="2026-10-23"><div class="date">2026/10/21–10/23</div><div class="name">114 學年度　收訖明細確認</div><div class="note">確認修課紀錄、課程學習成果、多元表現、幹部紀錄都在且無誤。沒去確認就視同無誤，高一二的帳到此結清。</div></li>
       <li class="station" data-date="2026-10-27" data-end="2026-11-10"><div class="date">2026/10/27–11/10</div><div class="name">學測・術科　報名</div><div class="note">大考中心受理期間；學測選考科目此時定案。術科考試報名亦為同期間。</div></li>
       <li class="station" data-date="2026-10-30"><div class="date">2026/10/30</div><div class="name">英聽一　公布成績及統計資料</div></li>
       <li class="station" data-date="2026-11-03"><div class="date">2026/11/3（二）</div><div class="name">繁星推薦・個人申請　招生簡章公告</div><div class="note">校系分則、檢定標準、比序項目在此公告——選校選系從這裡開始。</div></li>
@@ -289,15 +341,19 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
       <li class="station" data-date="2027-01-05"><div class="date">2027/1/5</div><div class="name">學測　應考資訊查詢・公布試場分配表</div></li>
       <li class="station big" data-date="2027-01-22" data-end="2027-01-24"><div class="date">2027/1/22（五）–1/24（日）</div><div class="name">學科能力測驗</div><div class="note">繁星、個人申請的成績依據，也是分發入學的一部分。</div></li>
       <li class="station" data-date="2027-01-26"><div class="date">2027/1/26–1/31</div><div class="name">術科考試</div><div class="note">音樂組 1/26–28・美術組 1/29–30・體育組 1/29–31。</div></li>
+      <li class="station enroll" data-date="2027-02-10" data-end="2027-02-12"><div class="date">2027/2/10–2/12</div><div class="name">115-1 課程學習成果　上傳截止</div><div class="note">2/10 學生上傳截止、2/11 教師認證截止、2/12 逾期補上傳申請。本學期最多上傳 6 件；學測剛考完就是這關，別忘了。</div></li>
       <li class="station" data-date="2027-02-25"><div class="date">2027/2/25</div><div class="name">學測・術科　公布成績及統計資料</div><div class="note">2/26 寄發成績單；術科成績通知單 3/2 寄發。</div></li>
-      <li class="station enroll" data-date="2027-02-25" data-end="2027-03-09"><div class="date">2027/2/25–3/9</div><div class="name">繁星推薦　志願選填</div><div class="note">2/25–3/4　熟悉操作 <a href="https://web.jhenggao.com/iSTARS/index.aspx?school=204" target="_blank" rel="noopener">校內繁星系統（政高）</a><br>3/5（五）　【預填】4 樓電腦教室<br>3/8（一）　【正式填】4 樓電腦教室<br>3/9（二）　【補填】4 樓電腦教室</div></li>
-      <li class="station enroll" data-date="2027-03-01" data-end="2027-03-15"><div class="date">2027/3/1–3/15</div><div class="name">個人申請　校內報名</div><div class="note">大學個人申請：<a href="https://web.jhenggao.com/isfirst/Login.aspx?school=204" target="_blank" rel="noopener">校內報名系統（政高）</a><br>四技二專申請入學：<a href="https://web.jhenggao.com/eSTARS/index.aspx?school=204" target="_blank" rel="noopener">校內報名系統（政高）</a><br>甄選會正式報名為 3/23–3/24，由學校集體辦理——校內作業提早三週，別等到三月下旬才動。</div></li>
+      <li class="station enroll" data-date="2027-02-25" data-end="2027-03-09"><div class="date">2027/2/25–3/9</div><div class="name">繁星推薦　志願選填</div><div class="note">2/25–3/4　熟悉操作 <a href="https://web.jhenggao.com/iSTARS/index.aspx?school=204" target="_blank" rel="noopener">校內繁星系統</a><br>3/5（五）　【預填】4 樓電腦教室<br>3/8（一）　【正式填】4 樓電腦教室<br>3/9（二）　【補填】4 樓電腦教室</div></li>
+      <li class="station enroll" data-date="2027-03-01" data-end="2027-03-15"><div class="date">2027/3/1–3/15</div><div class="name">個人申請　校內報名</div><div class="note">大學個人申請：<a href="https://web.jhenggao.com/isfirst/Login.aspx?school=204" target="_blank" rel="noopener">校內報名系統</a><br>四技二專申請入學：<a href="https://web.jhenggao.com/eSTARS/index.aspx?school=204" target="_blank" rel="noopener">校內報名系統</a><br>甄選會正式報名為 3/23–3/24，由學校集體辦理——校內作業提早三週，別等到三月下旬才動。</div></li>
+      <li class="station enroll" data-date="2027-03-03" data-end="2027-03-05"><div class="date">2027/3/3–3/5</div><div class="name">115-1　收訖明細確認</div><div class="note">修課紀錄與幹部紀錄由學校上傳，幹部證書由學務處發紙本。高三上這學期的帳，在這裡結清。</div></li>
       <li class="station" data-date="2027-03-03"><div class="date">2027/3/3 起</div><div class="name">考生上網設定個人專屬密碼</div><div class="note">繁星、個申後續所有系統都要用它，開放到 6/13，別拖到報名前一天。</div></li>
       <li class="station" data-date="2027-03-11"><div class="date">2027/3/11–3/12</div><div class="name">繁星推薦　學校報名</div><div class="note">由推薦學校向甄選會統一辦理；校內作業更早，跟緊<b>註冊組</b>公告。</div></li>
-      <li class="station" data-date="2027-03-18"><div class="date">2027/3/18（四）9:00</div><div class="name">繁星推薦　放榜（第 1–7 類）</div><div class="note">錄取後不得再參加同學年個人申請。3/18–3/22 可網路聲明放棄，但放棄後只剩分科測驗、走分發入學。</div></li>
+      <li class="station" data-date="2027-03-18"><div class="date">2027/3/18（四）9:00</div><div class="name">繁星推薦　放榜（第 1–7 類）</div><div class="note">錄取後<b>不論放棄與否</b>，都不得再報名同學年個人申請與四技申請入學。3/18–3/22 可網路聲明放棄，但放棄後只剩分科測驗、走分發入學。</div></li>
       <li class="station" data-date="2027-03-23" data-end="2027-03-24"><div class="date">2027/3/23–3/24</div><div class="name">個人申請　報名</div><div class="note">由學校集體向甄選會辦理（3/22–3/24 繳費）；校內收件更早。</div></li>
       <li class="station" data-date="2027-03-30"><div class="date">2027/3/30（二）9:00</div><div class="name">個人申請　公告第一階段篩選結果</div><div class="note">通過幾個、被刷在哪一關，這天揭曉；複查到 3/31 中午止。</div></li>
       <li class="station" data-date="2027-04-09" data-end="2027-04-14"><div class="date">2027/4/9–4/14</div><div class="name">檢視核對學習歷程中央資料庫檔案</div><div class="note">審查資料上傳測試系統同期開放。檔案有缺漏要在這時發現，之後來不及。</div></li>
+      <li class="station enroll" data-date="2027-04-12" data-end="2027-04-14"><div class="date">2027/4/12–4/14</div><div class="name">115-2 上傳截止・教師認證・<b>最後勾選</b></div><div class="note">4/12 課程學習成果與多元表現上傳截止、4/13 教師認證截止、<b>4/14 截止勾選</b>（課程學習成果最多 6 件、多元表現最多 10 件）。<b>這是高中三年最後一次勾選</b>，過了就定案。</div></li>
+      <li class="station enroll" data-date="2027-04-15" data-end="2027-04-19"><div class="date">2027/4/15–4/19</div><div class="name">115-2　收訖明細確認</div><div class="note">高中生涯最後一次收訖明細。確認完，你的學習歷程檔案就是教授會看到的樣子。</div></li>
       <li class="station" data-date="2027-04-29"><div class="date">2027/4/29 起</div><div class="name">個人申請　審查資料上傳截止</div><div class="note">各校截止日不同（詳校系分則），最早 4/29 起陸續截止——按最早那間排時程。</div></li>
       <li class="station" data-date="2027-05-08" data-end="2027-05-11"><div class="date">2027/5/8–5/11</div><div class="name">查詢第六學期修課紀錄</div><div class="note">通過一階的應屆生務必上網核對；學校於 5/6–5/7 上傳。</div></li>
       <li class="station" data-date="2027-05-13" data-end="2027-05-30"><div class="date">2027/5/13–5/30</div><div class="name">個人申請　第二階段指定項目甄試</div><div class="note">各校自訂日期。面試、筆試、實作都在這段，是高三下最忙的一段路。</div></li>
@@ -315,7 +371,7 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
 
   <section id="lanes">
     <h2>🧭 入學管道指南</h2>
-    <p class="h2note">五條路線，比的東西不一樣。點開看你適合哪一條。</p>
+    <p class="h2note">六條路線，比的東西不一樣。點開看你適合哪一條。</p>
 
     <details class="lane"><summary>特殊選才<span class="tag teal">看特殊才能・不採學測</span></summary><div class="body">
       <p><b class="k">是什麼</b>各大學獨立招生，看競賽、專題、特殊經歷與潛力，不採計學測成績；名額少。</p>
@@ -327,7 +383,8 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     <details class="lane"><summary>繁星推薦<span class="tag">看在校排名＋學測成績</span></summary><div class="body">
       <p><b class="k">是什麼</b>由高中推薦，用「在校成績校排百分比＋學測」比序分發；每人限選一校一學群。</p>
       <p><b class="k">適合誰</b>高一起在校成績穩定靠前、目標學校明確的人。比的是校排，不是絕對分數，但學測要過檢定標準。</p>
-      <p><b class="k">關鍵時間</b><b>2/25–3/9 校內志願選填</b>、3/11–3/12 學校向甄選會報名、<b>3/18 放榜</b>（第八類醫牙 6/2）。錄取後即<b>不得再參加同學年個人申請</b>；3/18–3/22 可網路聲明放棄，但放棄後只剩分科測驗、走分發入學這條路。</p>
+      <p><b class="k">關鍵時間</b><b>2/25–3/9 校內志願選填</b>、3/11–3/12 學校向甄選會報名、<b>3/18 放榜</b>（第八類醫牙 6/2）。</p>
+      <p><b class="k">錄取之後</b>這是最容易誤解的一段，看清楚：錄取生<b>不論放棄與否</b>，都不得再報名同學年大學「個人申請」，也不得參加「四技申請入學」的第一階段篩選。3/18–3/22 可上網聲明放棄，但<b>放棄只換到一條路</b>——分科測驗、走分發入學；沒在期限內完成放棄，連分發入學都不能報。換句話說：<b>填繁星志願的那一刻，就要當成已經決定了。</b></p>
       <p><b class="k">老師提醒</b>繁星的準備從高一每一次段考就開始了；高三才問繁星，答案已經寫在成績單上。</p>
       <p><a class="btn" href="star.html">⭐ 歷年篩選結果（111–115）</a></p>
     </div></details>
@@ -336,8 +393,17 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
       <p><b class="k">是什麼</b>學測成績過一階篩選後，進二階「審查資料（學習歷程）＋面試或筆試」；至多 6 個志願。</p>
       <p><b class="k">適合誰</b>對科系有明確想法、學習歷程有累積、口語表達不怯場的人。</p>
       <p><b class="k">關鍵時間</b><b>3/1–3/15 校內報名</b>、3/23–3/24 甄選會報名、3/30 一階篩選、4/29 起審查資料陸續截止（各校不同）、5/13–5/30 二階甄試、<b>6/3–6/4 登記就讀志願序</b>、6/10 統一分發放榜。</p>
+      <p><b class="k">一階怎麼篩</b>各校系自訂每個科目的<b>篩選倍率</b>，篩選時<b>從倍率大的科目篩到倍率小的</b>，一關一關取足人數。所以<b>真正決定生死的是「最小倍率」那一科</b>——前面幾關多半只刷掉明顯不足的人。每一關同級分者會一起通過、不受人數限制；篩到最後一關仍同級分超額，就依該校系訂的「同級分超額篩選方式」再比，若比到最後還是同分，超額者<b>一律取得二階資格</b>。選校系時請把最小倍率那一科的級分，跟歷年通過標準放在一起看。</p>
       <p><b class="k">老師提醒</b>多數校系二階佔總成績約五成——學測只是入場券，要注意二階的參採項目！還有：<b>6/3–6/4 一定要上網登記就讀志願序</b>，沒登記等於放棄全部錄取校系。</p>
       <p><a class="btn" href="apply.html">🎯 歷年篩選查詢（111–115）</a></p>
+    </div></details>
+
+    <details class="lane"><summary>四技申請入學<span class="tag">看學測＋二階複試｜前進科大</span></summary><div class="body">
+      <p><b class="k">是什麼</b>正式名稱是「科技校院日間部四年制申請入學聯合招生」，是科技大學與技術學院<b>專門招收高中生</b>的名額。同樣採計當學年度學測成績，一階學測篩選、二階由各校辦理複試（審查資料、面試或實作），至多 6 個校系志願。</p>
+      <p><b class="k">適合誰</b>想走實作與產業導向路線的人（台科、北科、雲科、高科這類）。普通科應屆與非應屆、綜高學術學程與專門學程、藝術群科學生都能報名。</p>
+      <p><b class="k">關鍵時間</b>報名與甄試期程和大學個人申請相近，但這是<b>另一份簡章、另一套系統</b>——校內報名同樣由學校集體辦理，實際日期依當年度簡章公告，不要拿大學個申的日期去推。</p>
+      <p><b class="k">老師提醒</b>它和大學個人申請是兩套獨立招生，<b>可以同時報名</b>，等於多開一條路；但兩邊各自有志願序登記與報到期程，漏掉任何一邊都等於放棄。另外：<b>繁星推薦錄取生不論放棄與否，都不能參加四技申請入學的一階篩選</b>，這條路和繁星是二選一。</p>
+      <p><a class="btn" href="https://www.jctv.ntut.edu.tw/caac/" target="_blank" rel="noopener">🏫 四技申請入學聯合招生委員會</a></p>
     </div></details>
 
     <details class="lane"><summary>分發入學<span class="tag teal">看學測＋分科成績</span></summary><div class="body">
@@ -359,9 +425,12 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
   <section id="portfolio">
     <h2>🗂️ 學習歷程檔案提醒</h2>
     <p class="h2note">高一二就在累積的東西，高三下才會知道它多值錢。件數依現行規定，實際以學校與簡章公告為準。</p>
+
+    <h3 class="pgroup"><i>1</i>什麼時候做　<small>時程與件數</small></h3>
     <div class="grade"><h3><span>高一・高二</span>｜按學期結清，不欠帳</h3><ul>
       <li>課程學習成果做完當學期就上傳送認證——認證有期限，過期任何人都救不了。</li>
-      <li>每學年勾選上傳中央資料庫上限：課程學習成果 6 件、多元表現 10 件。</li>
+      <li>每學期校內都有上傳截止日，之後還要確認一次<b>收訖明細</b>（課程學習成果、多元表現、幹部與競賽紀錄都在裡面）；沒去確認就視同無誤，事後補不回來。</li>
+      <li><b>「上傳」和「勾選」是兩個不同的上限</b>，最常搞混：上傳到校內平台，課程學習成果<b>每學期</b>最多 6 件、多元表現<b>每學年</b>最多 15 件；勾選送中央資料庫，課程學習成果<b>每學年</b>最多 6 件、多元表現<b>每學年</b>最多 10 件。上傳了沒勾選，等於沒交。</li>
       <li>寧可少而完整，不要多而破碎；一份有反思的成果勝過五份流水帳。</li>
     </ul></div>
     <div class="grade t"><h3><span>高三上</span>｜盤點與補強</h3><ul>
@@ -370,8 +439,75 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     </ul></div>
     <div class="grade t"><h3><span>高三下</span>｜勾選與自述</h3><ul>
       <li>個申每校系勾選：課程學習成果至多 3 件、多元表現至多 10 件，另撰寫學習歷程自述。</li>
+      <li>校內死線都早於甄選會期程，全部標在上面路線圖的<b>青綠色站</b>：9/18 勾選 114 學年度、10/21–10/23 收訖明細、2/10 上傳截止、3/3–3/5 收訖明細、<b>4/14 最後勾選</b>、4/15–4/19 最後收訖明細。</li>
+      <li>校內模擬面試有報名就去。那是二階前唯一一次有人當面挑你毛病的機會。</li>
       <li>繁星放榜到個申資料上傳的間隔很短——自述與勾選策略在放榜前就要動工。</li>
     </ul></div>
+
+    <h3 class="pgroup"><i>2</i>怎麼寫才有用　<small>審查現場的真相與寫法</small></h3>
+    <details class="lane"><summary>先破四個迷思<span class="tag">教授那邊發生什麼事</span></summary><div class="body">
+      <ul class="myth">
+        <li>
+          <p class="m">教授很有空，會慢慢看我的自傳。</p>
+          <p class="r"><b>一份審查資料的閱讀時間大約只有 10–15 分鐘。</b>易讀性排第一：每份文件開頭放摘要，善用小標題與圖表，別讓教授自己找重點。</p>
+        </li>
+        <li>
+          <p class="m">成績好、獎狀多就穩上了。</p>
+          <p class="r"><b>看的是過程，不是結果。</b>大學採多資料參採，別只放成果和獎狀；要寫出你怎麼做、卡在哪裡、最後學到什麼。</p>
+        </li>
+        <li>
+          <p class="m">活動參加越多越好，履歷要塞滿。</p>
+          <p class="r"><b>質重於量。</b>10 個沾醬油的活動，不如挑 3–5 個最能扣住科系的經歷深寫。</p>
+        </li>
+        <li>
+          <p class="m">審查全憑教授主觀喜好，一切看運氣。</p>
+          <p class="r"><b>有嚴謹流程。</b>校系會開共識會議訂評分標準，並用差分檢核防止評分偏差。照簡章要求拿出能力證據，不要賭運氣。</p>
+        </li>
+      </ul>
+    </div></details>
+
+    <details class="lane"><summary>學習歷程自述怎麼寫<span class="tag">自述・動機・多元・讀書計畫</span></summary><div class="body">
+      <p><b class="k">先盤點五個標籤</b>沒有成績單的時候，大學是靠這五件事認識你：<b>興趣</b>（從「是什麼」轉向「為什麼被吸引」）、<b>能力</b>（把興趣變成哪些具體行動）、<b>特質</b>（團隊裡你做的補位行為）、<b>價值觀</b>（你選擇投入某件事的真正理由）、<b>未來想像</b>（你已經開始思考的去向）。</p>
+      <p><b class="k">就讀動機</b>抄系所簡介是最常見的死法。要寫出「強連結」：<span class="quote">我在高二專題中發現……，後來得知貴系有……的特色課程，這正是我缺乏、也最想深入學習的。</span>檢查方式很簡單：把校名遮起來，換成別間學校也說得通，就是失敗。</p>
+      <p><b class="k">多元表現</b>先用表格把全部統整一次，再挑重點深寫。公式是<b>一個名稱＋一句話心得</b>：<span class="quote">模擬聯合國——從害怕發言到學會談判妥協，我發現溝通的重點在於聆聽。</span></p>
+      <p><b class="k">讀書計畫</b>分近程（錄取到開學）、中程（大學四年）、遠程（畢業之後），而且要具體。「我會努力精進英文」是廢話；「入學前考到多益 750，並讀完指定原文書銜接大一課程」才叫計畫。</p>
+    </div></details>
+
+    <details class="lane"><summary>排版心法<span class="tag">10 分鐘內被看懂</span></summary><div class="body">
+      <p><b class="k">交代脈絡</b>用「情境→任務→行動→結果反思」四步把一件事說完，故事才有頭有尾、立體得起來。</p>
+      <p><b class="k">用小標題代替編號</b>把結論寫進標題：用「從挫折中學會團隊補位」取代「第一點」。教授只掃標題也能看懂你在說什麼。</p>
+      <p><b class="k">圖表與重點標示</b>適時放入圖表；關鍵字加粗或用底色標註，主動引導教授的視線。</p>
+    </div></details>
+
+    <div class="warnbox">
+      <h4>⚠️ AI 是助手，不是槍手</h4>
+      <p>大學端已具備查核機制。若由他人（含 AI）代寫造假，最重可能面臨<b>取消錄取資格、入學後開除學籍</b>。這條紅線不值得試。</p>
+      <div class="two">
+        <div class="yes"><b>✔ 可以用來</b><ul>
+          <li>潤飾語句、修正錯字</li>
+          <li>提供結構建議</li>
+          <li>腦力激盪，幫你問出自己沒想到的問題</li>
+        </ul></div>
+        <div class="no"><b>✘ 絕對不行</b><ul>
+          <li>無中生有，編造經歷或心得</li>
+          <li>直接複製貼上 AI 寫的長篇大論</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <h3 class="pgroup"><i>3</i>送出前打勾　<small>五分鐘自我檢核</small></h3>
+    <div class="check" id="checklist">
+      <label><input type="checkbox"><span><b>多元表現</b>和<b>課程學習成果</b>有明顯區隔，沒有重複寫一樣的東西。</span></label>
+      <label><input type="checkbox"><span>每個經歷都緊扣<b>目標校系重視的特質</b>，沒有放無關的流水帳。</span></label>
+      <label><input type="checkbox"><span><b>就讀動機</b>寫出這間學校的獨有資源——遮掉校名就說不通了。</span></label>
+      <label><input type="checkbox"><span><b>未來規劃</b>由遠程寫到近程，目標具體、有個人特色。</span></label>
+      <label><input type="checkbox"><span>錯別字與排版檢查完畢，重點段落有用<b>粗體</b>或<b>圖表</b>凸顯。</span></label>
+      <label><input type="checkbox"><span>內容都是我自己寫的；AI 只用於潤飾與檢查，沒有代寫、沒有編造。</span></label>
+      <div class="foot"><span>已完成 <b id="checkCount">0</b> / 6　勾選只存在這台裝置的瀏覽器。</span><button type="button" id="checkReset">清除勾選</button></div>
+    </div>
+
+    <p><a class="btn" href="https://www.108epo.com/" target="_blank" rel="noopener">📗 作伙學：教授觀點與範例</a>
+       <a class="btn" href="https://www.cac.edu.tw/cacportal/jbcrc/LearningPortfolios_MultiQuery_ppa/index.php" target="_blank" rel="noopener">🎯 各校系學習準備建議方向</a></p>
   </section>
 
   <section id="links">
@@ -383,14 +519,17 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
       <li><a href="https://www.jbcrc.edu.tw" target="_blank" rel="noopener">大學招生委員會聯合會</a><span>考招制度總入口</span></li>
       <li><a href="https://lulu.ntus.edu.tw" target="_blank" rel="noopener">運動績優學生升學輔導網</a><span>甄審甄試簡章・名額彙整表・榜單</span></li>
       <li><a href="https://iss.ntus.edu.tw/open/sexam" target="_blank" rel="noopener">單獨招生試務資訊查詢</a><span>各校運動績優單招・報名日期與試務網頁</span></li>
+      <li><a href="https://www.jctv.ntut.edu.tw/caac/" target="_blank" rel="noopener">四技申請入學聯合招生委員會</a><span>科技校院日間部四年制申請入學（招收高中生）</span></li>
       <li><a href="https://collego.edu.tw" target="_blank" rel="noopener">ColleGo！</a><span>認識學群學系・選系探索</span></li>
       <li><a href="https://ioh.tw" target="_blank" rel="noopener">IOH 開放個人經驗平台</a><span>學長姐科系就讀經驗</span></li>
+      <li><a href="https://www.108epo.com/" target="_blank" rel="noopener">作伙學</a><span>學習歷程審議｜教授審查觀點・課程成果範例</span></li>
+      <li><a href="https://www.cac.edu.tw/cacportal/jbcrc/LearningPortfolios_MultiQuery_ppa/index.php" target="_blank" rel="noopener">學習準備建議方向查詢</a><span>各校系明列想看的審查資料與能力</span></li>
       <li><a href="https://shs.k12ea.gov.tw/site/12basic/" target="_blank" rel="noopener">108 課綱資訊網</a><span>學習歷程檔案官方說明</span></li>
     </ul>
   </section>
 
   <footer>
-    資料更新：2026/9/2。考試日期已依「116 學年度考試簡章」（115.8.4 初版）與「116 學年度大學術科考試簡章」逐項核對。繁星推薦與個人申請日期依甄選會「116 學年度重要日期（暫定）」，正式簡章 115.11.03 公告後將再核對。標示「歷年慣例」者為往年時段推估。本頁為升學資訊整理，非官方網站。<br>
+    資料更新：2026/9/3。考試日期已依「116 學年度考試簡章」（115.8.4 初版）與「116 學年度大學術科考試簡章」逐項核對。繁星推薦與個人申請日期依甄選會「116 學年度重要日期（暫定）」，正式簡章 115.11.03 公告後將再核對。標示「歷年慣例」者為往年時段推估。本頁為升學資訊整理，非官方網站。<br>
     path-map 升學地圖 © Kitty｜<a href="https://mathmap-kitty.github.io/web/" target="_blank" rel="noopener">mathmap 數學教材網</a>
   </footer>
 </div>
@@ -471,6 +610,32 @@ footer{margin:34px 0 0; padding-top:16px; border-top:1px solid var(--line); colo
     if(el){el.scrollIntoView();history.replaceState(null,"","#"+this.value);}
     this.selectedIndex=0;
   });
+})();
+</script>
+<script>
+/* 送出前檢核表：勾選狀態存在本機瀏覽器 */
+(function(){
+  var box=document.getElementById("checklist"); if(!box)return;
+  var boxes=box.querySelectorAll('input[type="checkbox"]');
+  var out=document.getElementById("checkCount");
+  var KEY="pathmap.portfolio.check.v1";
+  var saved=[];
+  try{ saved=JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(e){ saved=[]; }
+  function sync(){
+    var n=0, state=[];
+    for(var i=0;i<boxes.length;i++){ state.push(boxes[i].checked); if(boxes[i].checked)n++; }
+    out.textContent=n;
+    try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){}
+  }
+  for(var i=0;i<boxes.length;i++){
+    if(saved[i])boxes[i].checked=true;
+    boxes[i].addEventListener("change",sync);
+  }
+  document.getElementById("checkReset").addEventListener("click",function(){
+    for(var j=0;j<boxes.length;j++)boxes[j].checked=false;
+    sync();
+  });
+  sync();
 })();
 </script>
 </body>
